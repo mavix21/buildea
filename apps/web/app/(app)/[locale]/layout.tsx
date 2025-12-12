@@ -1,12 +1,12 @@
 import { Geist, Geist_Mono } from "next/font/google";
 
-import "@myapp/ui/globals.css";
+import "@buildea/ui/globals.css";
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 
-import { Toaster } from "@myapp/ui/components/sonner";
+import { Toaster } from "@buildea/ui/components/sonner";
 
 import { routing } from "@/shared/i18n/routing";
 import { ThemeProvider } from "@/shared/ui/theme-provider";

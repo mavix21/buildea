@@ -1,5 +1,5 @@
 {
-  "name": "@myapp/convex",
+  "name": "@buildea/convex",
   "version": "0.0.0",
   "description": "Convex backend",
   "exports": {
@@ -22,8 +22,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@buildea/auth": "workspace:*",
     "@convex-dev/better-auth": "^0.9.11",
-    "@myapp/auth": "workspace:*",
     "@neynar/nodejs-sdk": "^3.108.0",
     "convex": "^1.31.0",
     "convex-helpers": "^0.1.107"
@@ -32,5 +32,5 @@
     "@better-auth/cli": "catalog:",
     "typescript": "catalog:"
   },
-  "prettier": "@myapp/prettier-config"
+  "prettier": "@buildea/prettier-config"
 }

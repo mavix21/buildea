@@ -14,16 +14,16 @@ import { useConvexAuth } from "convex/react";
 import { useTranslations } from "next-intl";
 import { useAccount, useChainId } from "wagmi";
 
-import { Badge } from "@myapp/ui/components/badge";
-import { Button } from "@myapp/ui/components/button";
+import { Badge } from "@buildea/ui/components/badge";
+import { Button } from "@buildea/ui/components/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@myapp/ui/components/card";
-import { Separator } from "@myapp/ui/components/separator";
+} from "@buildea/ui/components/card";
+import { Separator } from "@buildea/ui/components/separator";
 
 import { authClient } from "@/auth/client";
 import { useRouter } from "@/shared/i18n";

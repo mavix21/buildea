@@ -1,6 +1,6 @@
 import { defineConfig } from "eslint/config";
 
-import { baseConfig } from "@myapp/eslint-config/base";
+import { baseConfig } from "@buildea/eslint-config/base";
 
 export default defineConfig(
   {

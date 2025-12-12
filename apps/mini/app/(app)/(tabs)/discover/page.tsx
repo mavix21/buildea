@@ -6,15 +6,15 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@myapp/ui/components/avatar";
-import { Badge } from "@myapp/ui/components/badge";
+} from "@buildea/ui/components/avatar";
+import { Badge } from "@buildea/ui/components/badge";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@myapp/ui/components/card";
+} from "@buildea/ui/components/card";
 
 interface DiscoverItem {
   id: string;

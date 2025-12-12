@@ -10,8 +10,8 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@myapp/ui/components/dialog";
-import { cn } from "@myapp/ui/lib/utils";
+} from "@buildea/ui/components/dialog";
+import { cn } from "@buildea/ui/lib/utils";
 
 function Command({
   className,

@@ -1,6 +1,6 @@
 "use client";
 
-import { LongSheet } from "@myapp/ui/components/long-sheet/index";
+import { LongSheet } from "@buildea/ui/components/long-sheet/index";
 
 import { ArticleContent } from "@/pages/article/article-content";
 import { useSheetRoute } from "@/shared/hooks/use-sheet-route";

@@ -11,10 +11,10 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@myapp/ui/components",
-    "utils": "@myapp/ui/lib/utils",
-    "hooks": "@myapp/ui/hooks",
-    "lib": "@myapp/ui/lib",
-    "ui": "@myapp/ui/components"
+    "components": "@buildea/ui/components",
+    "utils": "@buildea/ui/lib/utils",
+    "hooks": "@buildea/ui/hooks",
+    "lib": "@buildea/ui/lib",
+    "ui": "@buildea/ui/components"
   }
 }

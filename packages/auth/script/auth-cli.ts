@@ -12,7 +12,7 @@
 
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
-import { db } from "@myapp/db/client";
+import { db } from "@buildea/db/client";
 
 import { initAuth } from "../src/index";
 
