@@ -3,12 +3,9 @@
 import type { ReactNode } from "react";
 import * as React from "react";
 import { OnchainKitProvider } from "@coinbase/onchainkit";
-import { base } from "wagmi/chains";
-
-import "@coinbase/onchainkit/styles.css";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { cookieToInitialState, WagmiProvider } from "wagmi";
+import { base } from "wagmi/chains";
 
 import { env } from "@/env";
 

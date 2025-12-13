@@ -51,7 +51,6 @@ export function SignInWithGitHub({ className }: SignInWithGitHubProps) {
   return (
     <LoadingButton
       size="lg"
-      variant="outline"
       type="button"
       className={className}
       onClick={handleSignInWithGitHub}
