@@ -1,10 +1,4 @@
-import Link from "next/link";
-import {
-  CpuIcon,
-  DatabaseIcon,
-  HouseHeartIcon,
-  TerminalIcon,
-} from "lucide-react";
+import { CpuIcon, DatabaseIcon, TerminalIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import {
@@ -15,6 +9,7 @@ import {
 } from "@buildea/ui/components/field";
 import { cn } from "@buildea/ui/lib/utils";
 
+import { Link } from "@/shared/i18n";
 import { OAuthErrorHandler } from "@/widgets/auth/oauth-error-handler";
 import { SignInWithGitHub } from "@/widgets/auth/sign-in-with-github";
 
@@ -54,7 +49,6 @@ export function LoginForm({
           </p>
         </div>
         <Field>
-          {/* <SignInWithBase /> */}
           <SignInWithGitHub className="font-pixel text-xs" />
         </Field>
         <FieldSeparator backgroundColor="bg-card" className="flex items-center">
