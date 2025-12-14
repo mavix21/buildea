@@ -45,7 +45,7 @@ export function LoginForm({
           <p className="text-muted-foreground text-sm">{t("description")}</p>
         </div>
         <Field>
-          <SignInWithGitHub className="font-pixel text-xs" />
+          <SignInWithGitHub className="font-pixel text-[11px]" />
         </Field>
         <FieldSeparator backgroundColor="bg-card" className="flex items-center">
           <div className="flex items-center justify-center gap-4">
