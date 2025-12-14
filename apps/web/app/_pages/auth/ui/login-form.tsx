@@ -18,7 +18,6 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const t = useTranslations("auth");
-  const tCommon = useTranslations("common");
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -33,7 +32,7 @@ export function LoginForm({
           </a> */}
           {/* <h1 className="text-xl font-bold">{t("welcome")}</h1> */}
           <span className="inline-block text-xs font-semibold tracking-wider uppercase">
-            Welcome to
+            {t("welcome_prefix")}
           </span>
           <h1
             className="font-heading mb-2 leading-none tracking-wide"
@@ -41,12 +40,9 @@ export function LoginForm({
               fontSize: "clamp(2.5rem, 8vw, 3.5rem)",
             }}
           >
-            <Link href="/">BUILDEA</Link>
+            <Link href="/">{t("app_name")}</Link>
           </h1>
-          <p className="text-muted-foreground text-sm">
-            Sign in to access workshops, hackathons, and connect with builders
-            across Latin America
-          </p>
+          <p className="text-muted-foreground text-sm">{t("description")}</p>
         </div>
         <Field>
           <SignInWithGitHub className="font-pixel text-xs" />
