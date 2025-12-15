@@ -8,8 +8,6 @@ const menuItems = [
   { name: "events", href: "#events" },
   { name: "community", href: "#community" },
   { name: "hackathons", href: "#hackathons" },
-  // { name: "Pricing", href: "#link" },
-  // { name: "About", href: "#link" },
 ] as const;
 
 export function NavItems() {
