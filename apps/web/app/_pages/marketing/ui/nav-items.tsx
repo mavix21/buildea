@@ -1,14 +1,13 @@
 import { useTranslations } from "next-intl";
 
-import { Button } from "@buildea/ui/components/button";
-
 import { Link } from "@/shared/i18n";
 import { LanguageSwitcher } from "@/shared/ui/language-switcher";
 import { ThemeSwitcher } from "@/shared/ui/theme-switcher";
 
 const menuItems = [
-  { name: "features", href: "#features" },
-  { name: "solution", href: "#solution" },
+  { name: "events", href: "#events" },
+  { name: "community", href: "#community" },
+  { name: "hackathons", href: "#hackathons" },
   // { name: "Pricing", href: "#link" },
   // { name: "About", href: "#link" },
 ] as const;
@@ -48,11 +47,6 @@ export function NavItems() {
           </ul>
         </div>
         <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-          <Button asChild className={"lg:inline-flex"}>
-            <Link href="#">
-              <span>{t("header.cta.primary")}</span>
-            </Link>
-          </Button>
           <div className="flex items-center gap-2">
             <LanguageSwitcher />
             <ThemeSwitcher />
