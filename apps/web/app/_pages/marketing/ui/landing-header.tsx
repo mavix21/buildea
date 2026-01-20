@@ -3,9 +3,9 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 
-import { Menu, X } from "@myapp/ui";
-import { Button } from "@myapp/ui/components/button";
-import { cn } from "@myapp/ui/lib/utils";
+import { Menu, X } from "@buildea/ui";
+import { Button } from "@buildea/ui/components/button";
+import { cn } from "@buildea/ui/lib/utils";
 
 import { Link } from "@/shared/i18n";
 import { LanguageSwitcher } from "@/shared/ui/language-switcher";

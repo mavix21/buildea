@@ -1,4 +1,4 @@
-import { Skeleton } from "@myapp/ui/components/skeleton";
+import { Skeleton } from "@buildea/ui/components/skeleton";
 
 export default function ProtectedPageLoading() {
   return (

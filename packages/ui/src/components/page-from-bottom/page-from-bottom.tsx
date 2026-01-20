@@ -5,8 +5,8 @@ import { Sheet } from "@silk-hq/components";
 
 import "./PageFromBottom.css";
 
-import { useBlurOnTravelStart } from "@myapp/ui/hooks/use-blur-on-travel-start";
-import { cn } from "@myapp/ui/lib/utils";
+import { useBlurOnTravelStart } from "@buildea/ui/hooks/use-blur-on-travel-start";
+import { cn } from "@buildea/ui/lib/utils";
 
 // ================================================================================================
 // Root

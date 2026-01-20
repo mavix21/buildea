@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 
-import { Button } from "@myapp/ui/components/button";
-import { LongSheet } from "@myapp/ui/components/long-sheet/index";
+import { Button } from "@buildea/ui/components/button";
+import { LongSheet } from "@buildea/ui/components/long-sheet/index";
 
 /**
  * Reusable dismiss button for LongSheet components.

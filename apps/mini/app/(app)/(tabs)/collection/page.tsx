@@ -7,22 +7,22 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@myapp/ui/components/avatar";
-import { Badge } from "@myapp/ui/components/badge";
-import { Button } from "@myapp/ui/components/button";
+} from "@buildea/ui/components/avatar";
+import { Badge } from "@buildea/ui/components/badge";
+import { Button } from "@buildea/ui/components/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@myapp/ui/components/card";
+} from "@buildea/ui/components/card";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@myapp/ui/components/tabs";
+} from "@buildea/ui/components/tabs";
 
 interface CollectionItem {
   id: string;

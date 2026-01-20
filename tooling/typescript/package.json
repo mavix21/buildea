@@ -1,5 +1,5 @@
 {
-  "name": "@myapp/tsconfig",
+  "name": "@buildea/tsconfig",
   "private": true,
   "files": [
     "*.json"

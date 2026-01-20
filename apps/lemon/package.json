@@ -15,13 +15,13 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@buildea/auth": "workspace:*",
+    "@buildea/better-auth-siwe-wallet-agnostic": "workspace:*",
+    "@buildea/convex": "workspace:*",
+    "@buildea/features": "workspace:*",
+    "@buildea/ui": "workspace:*",
     "@convex-dev/better-auth": "^0.10.10",
     "@lemoncash/mini-app-sdk": "^0.1.11",
-    "@myapp/auth": "workspace:*",
-    "@myapp/better-auth-siwe-wallet-agnostic": "workspace:*",
-    "@myapp/convex": "workspace:*",
-    "@myapp/features": "workspace:*",
-    "@myapp/ui": "workspace:*",
     "@silk-hq/components": "^0.10.0",
     "@t3-oss/env-nextjs": "^0.13.10",
     "@tailwindcss/postcss": "catalog:",
@@ -46,8 +46,8 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@myapp/eslint-config": "workspace:*",
-    "@myapp/tsconfig": "workspace:*",
+    "@buildea/eslint-config": "workspace:*",
+    "@buildea/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",
     "@types/react-dom": "catalog:react19",
@@ -55,5 +55,5 @@
     "jiti": "^2.6.1",
     "typescript": "catalog:"
   },
-  "prettier": "@myapp/prettier-config"
+  "prettier": "@buildea/prettier-config"
 }

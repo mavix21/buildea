@@ -1,12 +1,12 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 
-import "@myapp/ui/globals.css";
+import "@buildea/ui/globals.css";
 
 import type { Metadata } from "next";
 
-import { ThemeProvider } from "@myapp/features/app/providers";
-import { Toaster } from "@myapp/ui/components/sonner";
+import { ThemeProvider } from "@buildea/features/app/providers";
+import { Toaster } from "@buildea/ui/components/sonner";
 
 import { MiniAppProvider } from "@/shared/context";
 

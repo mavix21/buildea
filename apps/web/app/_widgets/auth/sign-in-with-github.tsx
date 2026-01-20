@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import {
   LoadingButton,
   LoadingButtonContent,
-} from "@myapp/ui/components/loading-button";
+} from "@buildea/ui/components/loading-button";
 
 import { authClient } from "@/auth/client";
 

@@ -4,9 +4,9 @@ import React from "react";
 import { Sheet } from "@silk-hq/components";
 import { ChevronLeft } from "lucide-react";
 
-import { Button } from "@myapp/ui/components/button";
-import { useBlurOnTravelStart } from "@myapp/ui/hooks/use-blur-on-travel-start";
-import { cn } from "@myapp/ui/lib/utils";
+import { Button } from "@buildea/ui/components/button";
+import { useBlurOnTravelStart } from "@buildea/ui/hooks/use-blur-on-travel-start";
+import { cn } from "@buildea/ui/lib/utils";
 
 // ================================================================================================
 // Root

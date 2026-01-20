@@ -16,11 +16,11 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@myapp/ui/components/avatar";
-import { Badge } from "@myapp/ui/components/badge";
-import { Button } from "@myapp/ui/components/button";
-import { Card, CardContent } from "@myapp/ui/components/card";
-import { Skeleton } from "@myapp/ui/components/skeleton";
+} from "@buildea/ui/components/avatar";
+import { Badge } from "@buildea/ui/components/badge";
+import { Button } from "@buildea/ui/components/button";
+import { Card, CardContent } from "@buildea/ui/components/card";
+import { Skeleton } from "@buildea/ui/components/skeleton";
 
 import { useAuth } from "@/shared/context/auth-context";
 import { useAddMiniApp, useMiniApp } from "@/shared/context/miniapp-context";

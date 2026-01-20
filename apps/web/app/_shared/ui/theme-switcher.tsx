@@ -3,14 +3,14 @@
 import { IconCheck, IconMoon, IconSun } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 
-import { Button } from "@myapp/ui/components/button";
+import { Button } from "@buildea/ui/components/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@myapp/ui/components/dropdown-menu";
-import { cn } from "@myapp/ui/lib/utils";
+} from "@buildea/ui/components/dropdown-menu";
+import { cn } from "@buildea/ui/lib/utils";
 
 export function ThemeSwitcher() {
   const { setTheme, theme } = useTheme();
