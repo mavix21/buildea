@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "@buildea/eslint-config": "workspace:*",
+    "@buildea/tailwind-config": "workspace:*",
     "@buildea/tsconfig": "workspace:*",
     "@types/node": "catalog:",
     "@types/react": "catalog:react19",

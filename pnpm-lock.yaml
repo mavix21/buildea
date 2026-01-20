@@ -415,6 +415,9 @@ importers:
       '@buildea/eslint-config':
         specifier: workspace:*
         version: link:../../tooling/eslint
+      '@buildea/tailwind-config':
+        specifier: workspace:*
+        version: link:../../tooling/tailwind
       '@buildea/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/typescript
