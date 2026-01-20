@@ -13,6 +13,9 @@
   },
   "auth": {
     "welcome": "Bienvenido a buildea",
+    "welcome_prefix": "Bienvenido a",
+    "app_name": "BUILDEA",
+    "description": "Inicia sesión para acceder a talleres, hackatones y conectar con builders en toda América Latina",
     "sign_in_with_github": "Iniciar sesión con GitHub",
     "signing_in": "Iniciando sesión...",
     "terms_privacy": "Al hacer clic en continuar, aceptas nuestros <terms>Términos de servicio</terms> y <privacy>Política de privacidad</privacy>.",
@@ -72,8 +75,9 @@
   },
   "landing": {
     "navigation": {
-      "features": "Características",
-      "solution": "Solución"
+      "events": "Eventos",
+      "community": "Comunidad",
+      "hackathons": "Hackatones"
     },
     "header": {
       "cta": {
@@ -81,12 +85,20 @@
       }
     },
     "hero": {
-      "title": "(TODO) Título",
-      "description": "(TODO) Descripción",
+      "badge": "Empoderando a los Builders de América Latina",
+      "title": "BUILDEA",
+      "description": "Tu puerta de entrada a <highlight>talleres</highlight>, <highlight>cursos</highlight>, <highlight>hackatones</highlight> y <highlight>eventos para desarrolladores</highlight> en toda América Latina.",
+      "sub_description": "Únete a miles de desarrolladores que están construyendo el futuro",
       "cta": {
         "primary": "Empieza ahora",
-        "secondary": "Saber más"
+        "secondary": "Ver Estadísticas"
       }
+    },
+    "stats": {
+      "builders": "BUILDERS",
+      "events": "EVENTOS",
+      "hackathons": "HACKATONES",
+      "countries": "PAÍSES"
     },
     "features": {
       "title": "(TODO) Feature 1",
