@@ -19,7 +19,6 @@
     "@base-org/account-ui": "latest",
     "@buildea/better-auth-siwe-wallet-agnostic": "workspace:*",
     "@buildea/convex": "workspace:*",
-    "@buildea/db": "workspace:*",
     "@buildea/features": "workspace:*",
     "@buildea/ui": "workspace:*",
     "@coinbase/onchainkit": "latest",
