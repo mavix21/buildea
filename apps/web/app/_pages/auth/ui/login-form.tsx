@@ -1,13 +1,15 @@
-import { HouseHeartIcon } from "lucide-react";
+import { CpuIcon, DatabaseIcon, TerminalIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import {
   Field,
   FieldDescription,
   FieldGroup,
+  FieldSeparator,
 } from "@buildea/ui/components/field";
 import { cn } from "@buildea/ui/lib/utils";
 
+import { Link } from "@/shared/i18n";
 import { OAuthErrorHandler } from "@/widgets/auth/oauth-error-handler";
 import { SignInWithGitHub } from "@/widgets/auth/sign-in-with-github";
 
@@ -16,46 +18,46 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const t = useTranslations("auth");
-  const tCommon = useTranslations("common");
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <OAuthErrorHandler />
       <FieldGroup>
         <div className="flex flex-col items-center gap-2 text-center">
-          <a href="#" className="flex flex-col items-center gap-2 font-medium">
+          {/* <a href="#" className="flex flex-col items-center gap-2 font-medium">
             <div className="flex size-8 items-center justify-center rounded-md">
               <HouseHeartIcon className="size-6" />
             </div>
             <span className="sr-only">{tCommon("company_name")}</span>
-          </a>
-          <h1 className="text-xl font-bold">{t("welcome")}</h1>
+          </a> */}
+          {/* <h1 className="text-xl font-bold">{t("welcome")}</h1> */}
+          <span className="inline-block text-xs font-semibold tracking-wider uppercase">
+            {t("welcome_prefix")}
+          </span>
+          <h1
+            className="font-heading mb-2 leading-none tracking-wide"
+            style={{
+              fontSize: "clamp(2.5rem, 8vw, 3.5rem)",
+            }}
+          >
+            <Link href="/">{t("app_name")}</Link>
+          </h1>
+          <p className="text-muted-foreground text-sm">{t("description")}</p>
         </div>
         <Field>
-          {/* <SignInWithBase /> */}
-          <SignInWithGitHub />
+          <SignInWithGitHub className="font-pixel text-[11px]" />
         </Field>
-        {/* <FieldSeparator>Or continue with</FieldSeparator>
-        <Field className="grid gap-2 sm:grid-cols-2">
-          <Button variant="outline" type="button">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
-                fill="currentColor"
-              ></path>
-            </svg>
-            GitHub
-          </Button>
-          <Button variant="outline" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path
-                d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
-                fill="currentColor"
-              />
-            </svg>
-            Google
-          </Button>
-        </Field> */}
+        <FieldSeparator backgroundColor="bg-card" className="flex items-center">
+          <div className="flex items-center justify-center gap-4">
+            <div className="bg-border h-px flex-1" />
+            <div className="flex items-center gap-2">
+              <TerminalIcon className="size-3" />
+              <CpuIcon className="size-3" />
+              <DatabaseIcon className="size-3" />
+            </div>
+            <div className="bg-border h-px flex-1" />
+          </div>
+        </FieldSeparator>
       </FieldGroup>
       <FieldDescription className="px-6 text-center">
         {t.rich("terms_privacy", {
