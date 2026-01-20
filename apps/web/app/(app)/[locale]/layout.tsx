@@ -1,4 +1,9 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Bebas_Neue,
+  Geist,
+  Geist_Mono,
+  Press_Start_2P,
+} from "next/font/google";
 
 import "@coinbase/onchainkit/styles.css";
 import "@buildea/ui/globals.css";
@@ -22,6 +27,18 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 });
 
+const fontHeading = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-heading",
+});
+
+const fontPixel = Press_Start_2P({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-pixel",
+});
+
 export const metadata: Metadata = {
   title: "Next.js Monorepo Template",
   description: "Next.js Monorepo Template",
@@ -39,7 +56,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased`}
+        className={`${fontSans.variable} ${fontMono.variable} ${fontHeading.variable} ${fontPixel.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
