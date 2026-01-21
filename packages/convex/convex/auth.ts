@@ -2,6 +2,7 @@ import type { AuthFunctions } from "@convex-dev/better-auth";
 import { createClient, GenericCtx } from "@convex-dev/better-auth";
 import { convex } from "@convex-dev/better-auth/plugins";
 import { betterAuth, BetterAuthOptions } from "better-auth";
+import { admin, organization } from "better-auth/plugins";
 
 import { betterAuthOptions } from "@buildea/auth";
 
@@ -54,7 +55,15 @@ export const createAuthOptions = (
     database: authComponent.adapter(ctx),
     secret: process.env.BETTER_AUTH_SECRET,
     optionsOnly: opts?.optionsOnly ?? false,
-    extraPlugins: [convex({ authConfig })],
+    extraPlugins: [
+      convex({ authConfig }),
+      admin(),
+      organization({
+        allowUserToCreateOrganization: async (user) => {
+          return user.role === "admin";
+        },
+      }),
+    ],
   }) satisfies BetterAuthOptions;
 };
 
