@@ -54,7 +54,6 @@ import { useFilteredNavItems } from "../model/use-nav";
 
 export default function AppSidebar() {
   const pathname = usePathname();
-  console.log({ pathname });
   const isOpen = useIsMobile();
   const { data: session } = authClient.useSession();
   const { signOut } = useSignOut();
