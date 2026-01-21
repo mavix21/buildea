@@ -45,44 +45,49 @@ LongSheetRoot.displayName = "LongSheet.Root";
 const LongSheetView = React.forwardRef<
   React.ComponentRef<typeof Sheet.View>,
   React.ComponentPropsWithoutRef<typeof Sheet.View>
->(({ children, className, onTravelStatusChange, onTravelStart, ...restProps }, ref) => {
-  const [restingOutside, setRestingOutside] = React.useState(false);
-  const [track, setTrack] = React.useState<"top" | "bottom">("bottom");
-  const handleTravelStart = useBlurOnTravelStart(onTravelStart);
+>(
+  (
+    { children, className, onTravelStatusChange, onTravelStart, ...restProps },
+    ref,
+  ) => {
+    const [restingOutside, setRestingOutside] = React.useState(false);
+    const [track, setTrack] = React.useState<"top" | "bottom">("bottom");
+    const handleTravelStart = useBlurOnTravelStart(onTravelStart);
 
-  React.useEffect(() => {
-    if (restingOutside) {
-      setTrack("bottom");
-    }
-  }, [restingOutside]);
+    React.useEffect(() => {
+      if (restingOutside) {
+        setTrack("bottom");
+      }
+    }, [restingOutside]);
 
-  return (
-    <LongSheetContext.Provider value={{ setTrack, restingOutside }}>
-      <Sheet.View
-        className={cn("LongSheet-view", className)}
-        contentPlacement="center"
-        tracks={track}
-        swipeOvershoot={false}
-        nativeEdgeSwipePrevention={true}
-        enteringAnimationSettings={{
-          easing: "spring",
-          stiffness: 480,
-          damping: 45,
-          mass: 1.5,
-        }}
-        onTravelStart={handleTravelStart}
-        onTravelStatusChange={(status) => {
-          setRestingOutside(status === "idleOutside");
-          onTravelStatusChange?.(status);
-        }}
-        {...restProps}
-        ref={ref}
-      >
-        {children}
-      </Sheet.View>
-    </LongSheetContext.Provider>
-  );
-});
+    return (
+      <LongSheetContext.Provider value={{ setTrack, restingOutside }}>
+        <Sheet.View
+          className={cn("LongSheet-view", className)}
+          contentPlacement="center"
+          tracks={track}
+          swipeOvershoot={false}
+          nativeEdgeSwipePrevention={true}
+          enteringAnimationSettings={{
+            easing: "spring",
+            stiffness: 480,
+            damping: 45,
+            mass: 1.5,
+          }}
+          onTravelStart={handleTravelStart}
+          onTravelStatusChange={(status) => {
+            setRestingOutside(status === "idleOutside");
+            onTravelStatusChange?.(status);
+          }}
+          {...restProps}
+          ref={ref}
+        >
+          {children}
+        </Sheet.View>
+      </LongSheetContext.Provider>
+    );
+  },
+);
 LongSheetView.displayName = "LongSheet.View";
 
 // ================================================================================================
