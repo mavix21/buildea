@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import {
   IconBell,
   IconChevronRight,
@@ -43,23 +42,26 @@ import {
 import { useIsMobile } from "@buildea/ui/hooks/use-mobile";
 
 import { authClient } from "@/auth/client";
+import { usePathname, useRouter } from "@/shared/i18n";
 import { useSignOut } from "@/shared/lib";
 import { Icons } from "@/shared/ui/icons";
 import { UserAvatarProfile } from "@/widgets/auth";
 
 import { navItems } from "../model/nav-items";
+import { useFilteredNavItems } from "../model/use-nav";
 
 // import { OrgSwitcher } from "../org-switcher";
 
 export default function AppSidebar() {
   const pathname = usePathname();
+  console.log({ pathname });
   const isOpen = useIsMobile();
   const { data: session } = authClient.useSession();
-  // const { organization } = useOrganization();
+  const { signOut } = useSignOut();
   const router = useRouter();
 
   const user = session?.user;
-  const { signOut } = useSignOut();
+  const filteredNavItems = useFilteredNavItems(navItems);
 
   React.useEffect(() => {
     // Side effects based on sidebar state changes
@@ -72,7 +74,7 @@ export default function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>Overview</SidebarGroupLabel>
           <SidebarMenu>
-            {navItems.map((item) => {
+            {filteredNavItems.map((item) => {
               const Icon = item.icon ? Icons[item.icon] : Icons.logo;
               return item.items && item.items.length > 0 ? (
                 <Collapsible
