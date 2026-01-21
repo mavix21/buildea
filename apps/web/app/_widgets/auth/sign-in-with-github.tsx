@@ -40,10 +40,11 @@ export function SignInWithGitHub({ className }: SignInWithGitHubProps) {
 
       if (error) {
         toast.error(error.message ?? t("errors.github_signin_failed"));
+        setIsLoading(false);
       }
+      // Don't reset loading on success - keep showing loading until redirect happens
     } catch {
       toast.error(t("errors.generic"));
-    } finally {
       setIsLoading(false);
     }
   }, [callbackUrl, locale, t]);
