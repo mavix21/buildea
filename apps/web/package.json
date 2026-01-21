@@ -46,6 +46,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@buildea/auth": "workspace:*",
     "@buildea/eslint-config": "workspace:*",
     "@buildea/tailwind-config": "workspace:*",
     "@buildea/tsconfig": "workspace:*",
