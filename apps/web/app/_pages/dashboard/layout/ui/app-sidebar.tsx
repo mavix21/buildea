@@ -66,7 +66,7 @@ export default function AppSidebar() {
   }, [isOpen]);
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader>{/* <OrgSwitcher /> */}</SidebarHeader>
       <SidebarContent className="overflow-x-hidden">
         <SidebarGroup>
