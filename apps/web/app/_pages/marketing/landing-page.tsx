@@ -27,7 +27,6 @@ export function LandingPage() {
 
       {/* Hero Section */}
       <main className="relative z-1 flex min-h-svh flex-col">
-        {/* Badge */}
         <HeroSection className="my-auto" />
       </main>
     </div>
