@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 
 import { Link } from "@/shared/i18n";
@@ -18,12 +19,14 @@ export function NavItems() {
         <ul className="flex gap-8 text-sm">
           {menuItems.map((item, index) => (
             <li key={index}>
-              <Link
-                href={item.href}
-                className="text-muted-foreground hover:text-accent-foreground block duration-150"
-              >
-                <span>{t(`navigation.${item.name}`)}</span>
-              </Link>
+              <Suspense>
+                <Link
+                  href={item.href}
+                  className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                >
+                  <span>{t(`navigation.${item.name}`)}</span>
+                </Link>
+              </Suspense>
             </li>
           ))}
         </ul>
@@ -34,19 +37,23 @@ export function NavItems() {
           <ul className="space-y-6 text-base">
             {menuItems.map((item, index) => (
               <li key={index}>
-                <Link
-                  href={item.href}
-                  className="text-muted-foreground hover:text-accent-foreground block duration-150"
-                >
-                  <span>{t(`navigation.${item.name}`)}</span>
-                </Link>
+                <Suspense>
+                  <Link
+                    href={item.href}
+                    className="text-muted-foreground hover:text-accent-foreground block duration-150"
+                  >
+                    <span>{t(`navigation.${item.name}`)}</span>
+                  </Link>
+                </Suspense>
               </li>
             ))}
           </ul>
         </div>
         <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
           <div className="flex items-center gap-2">
-            <LanguageSwitcher />
+            <Suspense>
+              <LanguageSwitcher />
+            </Suspense>
             <ThemeSwitcher />
           </div>
         </div>
