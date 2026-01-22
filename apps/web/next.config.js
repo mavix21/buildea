@@ -12,6 +12,7 @@ const config = {
   transpilePackages: ["@buildea/ui", "@buildea/features"],
 
   typedRoutes: true,
+  cacheComponents: true,
   typescript: { ignoreBuildErrors: true },
 
   // Server-side packages that should not be bundled
