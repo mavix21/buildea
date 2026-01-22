@@ -2,12 +2,8 @@
 
 import type { ReactNode } from "react";
 import * as React from "react";
-import { OnchainKitProvider } from "@coinbase/onchainkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { cookieToInitialState, WagmiProvider } from "wagmi";
-import { base } from "wagmi/chains";
-
-import { env } from "@/env";
 
 import { getConfig } from "../_config/wagmi";
 
@@ -25,25 +21,7 @@ export function OnchainKitClientProvider({
 
   return (
     <WagmiProvider config={config} initialState={initialState}>
-      <QueryClientProvider client={queryClient}>
-        <OnchainKitProvider
-          apiKey={env.NEXT_PUBLIC_ONCHAINKIT_API_KEY}
-          projectId={env.NEXT_PUBLIC_ONCHAINKIT_PROJECT_ID}
-          chain={base}
-          config={{
-            appearance: {
-              mode: "auto",
-              name: env.NEXT_PUBLIC_APPLICATION_NAME,
-            },
-            wallet: {
-              display: "modal",
-              preference: "smartWalletOnly",
-            },
-          }}
-        >
-          {children}
-        </OnchainKitProvider>
-      </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </WagmiProvider>
   );
 }
