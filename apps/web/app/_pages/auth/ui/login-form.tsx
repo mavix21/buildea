@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { CpuIcon, DatabaseIcon, TerminalIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -10,7 +11,6 @@ import {
 import { cn } from "@buildea/ui/lib/utils";
 
 import { Link } from "@/shared/i18n";
-import { OAuthErrorHandler } from "@/widgets/auth/oauth-error-handler";
 import { SignInWithGitHub } from "@/widgets/auth/sign-in-with-github";
 
 export function LoginForm({
@@ -21,16 +21,8 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <OAuthErrorHandler />
       <FieldGroup>
         <div className="flex flex-col items-center gap-2 text-center">
-          {/* <a href="#" className="flex flex-col items-center gap-2 font-medium">
-            <div className="flex size-8 items-center justify-center rounded-md">
-              <HouseHeartIcon className="size-6" />
-            </div>
-            <span className="sr-only">{tCommon("company_name")}</span>
-          </a> */}
-          {/* <h1 className="text-xl font-bold">{t("welcome")}</h1> */}
           <span className="inline-block text-xs font-semibold tracking-wider uppercase">
             {t("welcome_prefix")}
           </span>
@@ -40,12 +32,16 @@ export function LoginForm({
               fontSize: "clamp(2.5rem, 8vw, 3.5rem)",
             }}
           >
-            <Link href="/">{t("app_name")}</Link>
+            <Suspense>
+              <Link href="/">{t("app_name")}</Link>
+            </Suspense>
           </h1>
           <p className="text-muted-foreground text-sm">{t("description")}</p>
         </div>
         <Field>
-          <SignInWithGitHub className="font-pixel text-[11px]" />
+          <Suspense>
+            <SignInWithGitHub className="font-pixel text-[11px]" />
+          </Suspense>
         </Field>
         <FieldSeparator backgroundColor="bg-card" className="flex items-center">
           <div className="flex items-center justify-center gap-4">
