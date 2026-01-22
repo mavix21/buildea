@@ -26,7 +26,6 @@ import {
 import { Separator } from "@buildea/ui/components/separator";
 
 import { authClient } from "@/auth/client";
-import { useRouter } from "@/shared/i18n";
 import PageContainer from "@/shared/ui/page-container";
 
 function InfoRow({
@@ -60,8 +59,6 @@ export default function ProtectedPage() {
   const [isSigningOut, setIsSigningOut] = useState(false);
   const t = useTranslations("dashboard");
   const tCommon = useTranslations("common");
-
-  const router = useRouter();
 
   const loading = isAuthLoading || isConnecting;
   const user = session?.user;
@@ -105,7 +102,7 @@ export default function ProtectedPage() {
                   try {
                     setIsSigningOut(true);
                     await authClient.signOut();
-                    router.push(`/login`);
+                    // router.push(`/login`);
                     // notify store so session hooks update
                     authClient.$store.notify("$sessionSignal");
                   } catch (e) {
