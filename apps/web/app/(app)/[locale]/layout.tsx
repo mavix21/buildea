@@ -9,12 +9,11 @@ import "@coinbase/onchainkit/styles.css";
 import "@buildea/ui/globals.css";
 
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 
 import { Toaster } from "@buildea/ui/components/sonner";
 
-import { routing } from "@/shared/i18n/routing";
+import { routing } from "@/shared/i18n";
 import { ThemeProvider } from "@/shared/ui/theme-provider";
 
 const fontSans = Geist({
@@ -44,17 +43,13 @@ export const metadata: Metadata = {
   description: "Next.js Monorepo Template",
 };
 
-export default async function RootLayout({
-  children,
-  params,
-}: LayoutProps<"/[locale]">) {
-  const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
-    notFound();
-  }
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
+export default function RootLayout({ children }: LayoutProps<"/[locale]">) {
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body
         className={`${fontSans.variable} ${fontMono.variable} ${fontHeading.variable} ${fontPixel.variable} font-sans antialiased`}
       >
