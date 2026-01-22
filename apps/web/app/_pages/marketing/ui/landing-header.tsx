@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
 
 import { Menu, X } from "@buildea/ui";
 import { cn } from "@buildea/ui/lib/utils";
 
-import { Link } from "@/shared/i18n";
-
 export function LandingHeader({ children }: { children?: React.ReactNode }) {
+  const locale = useLocale();
   const tCommon = useTranslations("common");
 
   const [menuState, setMenuState] = React.useState(false);
@@ -38,11 +38,10 @@ export function LandingHeader({ children }: { children?: React.ReactNode }) {
           <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
             <div className="flex w-full justify-between lg:w-auto">
               <Link
-                href="/"
+                href={`/${locale}`}
                 aria-label="home"
                 className="flex items-center space-x-2"
               >
-                {/* <Logo /> */}
                 <div className="col-span-1 col-start-1 row-start-1 hidden items-center justify-center gap-2 lg:flex">
                   <span className="font-semibold">{tCommon("logo")}</span>
                 </div>
