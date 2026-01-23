@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Link from "next/link";
 import {
   IconBell,
@@ -24,18 +23,19 @@ import {
 
 import type { preloadAuthQuery } from "@/auth/server";
 import { UserAvatarProfile } from "@/widgets/auth";
-import { UserAvatarProfileSkeleton } from "@/widgets/auth/user-avatar-profile-skeleton";
 
 import SignOutMenuItem from "./sign-out-menu-item";
 
 interface UserMenuProps {
   currentUserPromise: ReturnType<
-    typeof preloadAuthQuery<typeof api.auth.getCurrentUser>
+    typeof preloadAuthQuery<typeof api.auth.getCurrentUserClient>
   >;
 }
 
 // Inner component that uses useRouter
-export function UserMenu({ currentUserPromise }: UserMenuProps) {
+export async function UserMenu({ currentUserPromise }: UserMenuProps) {
+  const preloadedUser = await currentUserPromise;
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -45,13 +45,11 @@ export function UserMenu({ currentUserPromise }: UserMenuProps) {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Suspense fallback={<UserAvatarProfileSkeleton />}>
-                <UserAvatarProfile
-                  className="h-8 w-8 rounded-lg"
-                  showInfo
-                  userPromise={currentUserPromise}
-                />
-              </Suspense>
+              <UserAvatarProfile
+                className="h-8 w-8 rounded-lg"
+                showInfo
+                preloadedUser={preloadedUser}
+              />
               <IconChevronsDown className="ml-auto size-4" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
@@ -63,13 +61,11 @@ export function UserMenu({ currentUserPromise }: UserMenuProps) {
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="px-1 py-1.5">
-                <Suspense fallback={<UserAvatarProfileSkeleton />}>
-                  <UserAvatarProfile
-                    className="h-8 w-8 rounded-lg"
-                    showInfo
-                    userPromise={currentUserPromise}
-                  />
-                </Suspense>
+                <UserAvatarProfile
+                  className="h-8 w-8 rounded-lg"
+                  showInfo
+                  preloadedUser={preloadedUser}
+                />
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />

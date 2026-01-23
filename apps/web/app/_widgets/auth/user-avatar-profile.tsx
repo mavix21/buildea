@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import type { Preloaded } from "convex/react";
 import { usePreloadedQuery } from "convex/react";
 
 import type { api } from "@buildea/convex/_generated/api";
@@ -10,23 +10,18 @@ import {
   AvatarImage,
 } from "@buildea/ui/components/avatar";
 
-import type { preloadAuthQuery } from "@/auth/server";
-
 interface UserAvatarProfileProps {
   className?: string;
   showInfo?: boolean;
-  userPromise: ReturnType<
-    typeof preloadAuthQuery<typeof api.auth.getCurrentUser>
-  >;
+  preloadedUser: Preloaded<typeof api.auth.getCurrentUserClient>;
 }
 
 export function UserAvatarProfile({
   className,
   showInfo = false,
-  userPromise,
+  preloadedUser,
 }: UserAvatarProfileProps) {
-  const currentUserPreloaded = React.use(userPromise);
-  const user = usePreloadedQuery(currentUserPreloaded);
+  const user = usePreloadedQuery(preloadedUser);
 
   return (
     <div className="flex items-center gap-2">

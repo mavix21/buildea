@@ -84,3 +84,16 @@ export const getCurrentUser = query({
     };
   },
 });
+
+export const getCurrentUserClient = query({
+  args: {},
+  handler: async (ctx) => {
+    const user = await authComponent.getAuthUser(ctx);
+    return {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      image: user.image,
+    };
+  },
+});

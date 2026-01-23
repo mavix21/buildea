@@ -11,15 +11,15 @@ import {
   SidebarMenu,
   SidebarRail,
 } from "@buildea/ui/components/sidebar";
-import { Skeleton } from "@buildea/ui/components/skeleton";
 
 import { preloadAuthQuery } from "@/auth/server";
+import { UserAvatarProfileSkeleton } from "@/widgets/auth/user-avatar-profile-skeleton";
 
 import SidebarMenuItems from "./sidebar-menu-items";
 import { UserMenu } from "./user-menu";
 
 export default function AppSidebar() {
-  const currentUserPromise = preloadAuthQuery(api.auth.getCurrentUser);
+  const currentUserPromise = preloadAuthQuery(api.auth.getCurrentUserClient);
 
   return (
     <Sidebar variant="inset" collapsible="icon">
@@ -33,7 +33,7 @@ export default function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <Suspense fallback={<Skeleton className="h-12 w-full rounded-md" />}>
+        <Suspense fallback={<UserAvatarProfileSkeleton />}>
           <UserMenu currentUserPromise={currentUserPromise} />
         </Suspense>
       </SidebarFooter>
