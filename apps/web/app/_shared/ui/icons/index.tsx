@@ -20,6 +20,7 @@ import {
   IconLayoutDashboard,
   IconLayoutKanban,
   IconLoader2,
+  IconLock,
   IconLogin,
   IconMoon,
   IconPhoto,
@@ -77,4 +78,5 @@ export const Icons = {
   exclusive: IconStar,
   account: IconUserCircle,
   profile: IconUser,
+  admin: IconLock,
 };
