@@ -10,6 +10,10 @@
     "./auth": {
       "types": "./convex/auth.ts",
       "default": "./convex/auth.ts"
+    },
+    "./errors": {
+      "types": "./convex/errors.ts",
+      "default": "./convex/errors.ts"
     }
   },
   "scripts": {
