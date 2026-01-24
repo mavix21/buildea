@@ -1,6 +1,9 @@
 "use client";
 
 import * as React from "react";
+import { useQuery } from "convex/react";
+
+import { api } from "@buildea/convex/_generated/api";
 
 import { authClient } from "@/auth/client";
 
@@ -40,10 +43,8 @@ function filterNavItems(items: NavItem[], ctx: AccessContext): NavItem[] {
  * @returns Filtered items
  */
 export function useFilteredNavItems(items: NavItem[]) {
-  const { data: session } = authClient.useSession();
+  const user = useQuery(api.auth.getCurrentUserClient);
   const { data: organizations } = authClient.useListOrganizations();
-
-  const user = session?.user;
 
   return React.useMemo(() => {
     const ctx: AccessContext = {
