@@ -55,7 +55,7 @@ export function SignInWithGitHub({ className }: SignInWithGitHubProps) {
       type="button"
       className={className}
       onClick={handleSignInWithGitHub}
-      isLoading={isLoading}
+      loading={isLoading}
     >
       <LoadingButtonContent
         className="text-[11px]"
