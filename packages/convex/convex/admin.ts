@@ -2,6 +2,7 @@ import { v } from "convex/values";
 
 import { query } from "./_generated/server";
 import { authComponent, createAuth } from "./auth";
+import { throwForbidden, throwUnauthenticated } from "./errors";
 
 /**
  * Get all organizations (admin only)
@@ -14,8 +15,11 @@ export const listOrganizations = query({
 
     // Verify user is admin
     const session = await auth.api.getSession({ headers });
-    if (!session?.user || session.user.role !== "admin") {
-      throw new Error("Unauthorized: Admin access required");
+    if (!session?.user) {
+      return throwUnauthenticated();
+    }
+    if (session.user.role !== "admin") {
+      return throwForbidden("Admin access required");
     }
 
     // List all organizations using admin API
@@ -37,8 +41,11 @@ export const getFullOrganization = query({
 
     // Verify user is admin
     const session = await auth.api.getSession({ headers });
-    if (!session?.user || session.user.role !== "admin") {
-      throw new Error("Unauthorized: Admin access required");
+    if (!session?.user) {
+      return throwUnauthenticated();
+    }
+    if (session.user.role !== "admin") {
+      return throwForbidden("Admin access required");
     }
 
     const organization = await auth.api.getFullOrganization({
@@ -75,8 +82,11 @@ export const listUsers = query({
 
     // Verify user is admin
     const session = await auth.api.getSession({ headers });
-    if (!session?.user || session.user.role !== "admin") {
-      throw new Error("Unauthorized: Admin access required");
+    if (!session?.user) {
+      return throwUnauthenticated();
+    }
+    if (session.user.role !== "admin") {
+      return throwForbidden("Admin access required");
     }
 
     const result = await auth.api.listUsers({
