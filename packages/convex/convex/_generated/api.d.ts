@@ -77,6 +77,7 @@ export declare const components: {
                   farcasterDisplayName?: null | string;
                   farcasterFid?: null | number;
                   farcasterUsername?: null | string;
+                  githubUrl?: null | string;
                   image?: null | string;
                   name: string;
                   role?: null | string;
@@ -225,6 +226,7 @@ export declare const components: {
                     | "banned"
                     | "banReason"
                     | "banExpires"
+                    | "githubUrl"
                     | "_id";
                   operator?:
                     | "lt"
@@ -614,6 +616,7 @@ export declare const components: {
                     | "banned"
                     | "banReason"
                     | "banExpires"
+                    | "githubUrl"
                     | "_id";
                   operator?:
                     | "lt"
@@ -1086,6 +1089,7 @@ export declare const components: {
                   farcasterDisplayName?: null | string;
                   farcasterFid?: null | number;
                   farcasterUsername?: null | string;
+                  githubUrl?: null | string;
                   image?: null | string;
                   name?: string;
                   role?: null | string;
@@ -1109,6 +1113,7 @@ export declare const components: {
                     | "banned"
                     | "banReason"
                     | "banExpires"
+                    | "githubUrl"
                     | "_id";
                   operator?:
                     | "lt"
@@ -1576,6 +1581,7 @@ export declare const components: {
                   farcasterDisplayName?: null | string;
                   farcasterFid?: null | number;
                   farcasterUsername?: null | string;
+                  githubUrl?: null | string;
                   image?: null | string;
                   name?: string;
                   role?: null | string;
@@ -1599,6 +1605,7 @@ export declare const components: {
                     | "banned"
                     | "banReason"
                     | "banExpires"
+                    | "githubUrl"
                     | "_id";
                   operator?:
                     | "lt"

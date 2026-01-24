@@ -8,10 +8,12 @@ export const usersTable = defineTable({
   // email: v.string(),
 
   // Add any app-specific user fields here
-  socials: v.optional(
-    v.object({
-      x: v.optional(v.string()),
-      linkedin: v.optional(v.string()),
-    }),
-  ),
+  socials: v.object({
+    twitter: v.optional(v.string()),
+    linkedin: v.optional(v.string()),
+    telegram: v.optional(v.string()),
+    website: v.optional(v.string()),
+    github: v.optional(v.string()),
+    farcaster: v.optional(v.string()),
+  }),
 }).index("by_authId", ["authId"]);

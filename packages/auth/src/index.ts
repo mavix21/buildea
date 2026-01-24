@@ -94,11 +94,25 @@ export const betterAuthOptions = <
         clientId: process.env.AUTH_GITHUB_ID!,
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         clientSecret: process.env.AUTH_GITHUB_SECRET!,
+        mapProfileToUser: (profile) => {
+          console.log("GitHub profile:", profile);
+          // GitHub profile includes `login` (username) and `html_url` (profile URL)
+          return {
+            email: profile.email,
+            name: profile.name,
+
+            githubUrl: profile.html_url,
+          };
+        },
       },
     },
     user: {
       additionalFields: {
         userId: {
+          type: "string",
+          required: false,
+        },
+        githubUrl: {
           type: "string",
           required: false,
         },

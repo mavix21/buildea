@@ -3,6 +3,7 @@ import { v } from "convex/values";
 import { components, internal } from "./_generated/api";
 import { action, internalMutation } from "./_generated/server";
 import { fetchUserByFid } from "./lib/neynar";
+import { vv } from "./schema";
 
 /**
  * Get or create a user from a Farcaster FID.
@@ -68,6 +69,11 @@ export const getOrCreateUserFromFid = action({
 
     const newAppUserId = await ctx.runMutation(internal.users.createAppUser, {
       authId: newUser.id,
+      socials: {
+        farcaster: farcasterUser.username
+          ? `https://farcaster.xyz/${farcasterUser.username}`
+          : undefined,
+      },
     });
 
     await ctx.runMutation(components.betterAuth.authUser.setUserId, {
@@ -153,10 +159,12 @@ export const removeNotificationDetails = action({
 export const createAppUser = internalMutation({
   args: {
     authId: v.string(),
+    socials: v.optional(vv.doc("users").fields.socials),
   },
-  handler: async (ctx, { authId }) => {
+  handler: async (ctx, args) => {
     return await ctx.db.insert("users", {
-      authId,
+      authId: args.authId,
+      socials: args.socials ?? {},
     });
   },
 });

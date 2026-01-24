@@ -29,6 +29,7 @@ export const authComponent = createClient<DataModel, typeof authSchema>(
           // Create app user linked to auth user
           const userId = await ctx.db.insert("users", {
             authId: authUser._id,
+            socials: {},
           });
           // Use authComponent.setUserId helper instead of calling the mutation directly
           // to avoid module evaluation issues that trigger auth config validation
@@ -37,6 +38,45 @@ export const authComponent = createClient<DataModel, typeof authSchema>(
             authId: authUser._id,
             userId: userId,
           });
+        },
+      },
+      account: {
+        onCreate: async (ctx, account) => {
+          // When a GitHub account is linked, auto-fill the github social field
+          if (account.providerId === "github") {
+            // Query the auth user to get the githubUrl (set via mapProfileToUser)
+            const authUser = await ctx.runQuery(
+              components.betterAuth.adapter.findOne,
+              {
+                model: "user",
+                where: [
+                  {
+                    field: "_id",
+                    operator: "eq",
+                    value: account.userId,
+                  },
+                ],
+              },
+            );
+
+            if (authUser?.githubUrl) {
+              // Find the app user by authId
+              const appUser = await ctx.db
+                .query("users")
+                .withIndex("by_authId", (q) => q.eq("authId", account.userId))
+                .unique();
+
+              if (appUser) {
+                // Update the user's socials with GitHub URL
+                await ctx.db.patch(appUser._id, {
+                  socials: {
+                    ...appUser.socials,
+                    github: authUser.githubUrl,
+                  },
+                });
+              }
+            }
+          }
         },
       },
     },

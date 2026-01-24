@@ -40,6 +40,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                   farcasterDisplayName?: null | string;
                   farcasterFid?: null | number;
                   farcasterUsername?: null | string;
+                  githubUrl?: null | string;
                   image?: null | string;
                   name: string;
                   role?: null | string;
@@ -189,6 +190,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                     | "banned"
                     | "banReason"
                     | "banExpires"
+                    | "githubUrl"
                     | "_id";
                   operator?:
                     | "lt"
@@ -579,6 +581,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                     | "banned"
                     | "banReason"
                     | "banExpires"
+                    | "githubUrl"
                     | "_id";
                   operator?:
                     | "lt"
@@ -1054,6 +1057,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                   farcasterDisplayName?: null | string;
                   farcasterFid?: null | number;
                   farcasterUsername?: null | string;
+                  githubUrl?: null | string;
                   image?: null | string;
                   name?: string;
                   role?: null | string;
@@ -1077,6 +1081,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                     | "banned"
                     | "banReason"
                     | "banExpires"
+                    | "githubUrl"
                     | "_id";
                   operator?:
                     | "lt"
@@ -1545,6 +1550,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                   farcasterDisplayName?: null | string;
                   farcasterFid?: null | number;
                   farcasterUsername?: null | string;
+                  githubUrl?: null | string;
                   image?: null | string;
                   name?: string;
                   role?: null | string;
@@ -1568,6 +1574,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                     | "banned"
                     | "banReason"
                     | "banExpires"
+                    | "githubUrl"
                     | "_id";
                   operator?:
                     | "lt"
