@@ -11,11 +11,11 @@ import { buttonVariants } from "./button";
 import { Spinner } from "./spinner";
 
 interface LoadingButtonContextValue {
-  isLoading: boolean;
+  loading: boolean;
 }
 
 const LoadingButtonContext = React.createContext<LoadingButtonContextValue>({
-  isLoading: false,
+  loading: false,
 });
 
 const useLoadingButton = () => React.useContext(LoadingButtonContext);
@@ -23,7 +23,6 @@ const useLoadingButton = () => React.useContext(LoadingButtonContext);
 interface LoadingButtonProps
   extends React.ComponentProps<"button">, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
-  isLoading?: boolean;
 }
 
 function LoadingButton({
@@ -33,18 +32,18 @@ function LoadingButton({
   children,
   disabled,
   asChild = false,
-  isLoading = false,
+  loading = false,
   ...props
 }: LoadingButtonProps) {
   const Comp = asChild ? Slot : "button";
 
   return (
-    <LoadingButtonContext.Provider value={{ isLoading }}>
+    <LoadingButtonContext.Provider value={{ loading: loading ?? false }}>
       <Comp
         data-slot="button"
-        data-loading={isLoading}
+        data-loading={loading ? true : undefined}
         className={cn(buttonVariants({ variant, size, className }))}
-        disabled={isLoading || disabled}
+        disabled={loading ?? disabled}
         {...props}
       >
         {children}
@@ -70,7 +69,7 @@ function LoadingButtonContent({
   className,
   duration = 0.15,
 }: LoadingButtonContentProps) {
-  const { isLoading } = useLoadingButton();
+  const { loading } = useLoadingButton();
 
   const defaultLoadingContent = (
     <>
@@ -81,7 +80,7 @@ function LoadingButtonContent({
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      {isLoading ? (
+      {loading ? (
         <motion.span
           key="loading"
           initial={{ opacity: 0, x: -10 }}
