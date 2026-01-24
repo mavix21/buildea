@@ -10,6 +10,7 @@
 
 import type * as admin from "../admin.js";
 import type * as auth from "../auth.js";
+import type * as errors from "../errors.js";
 import type * as http from "../http.js";
 import type * as lib_neynar from "../lib/neynar.js";
 import type * as tables_users from "../tables/users.js";
@@ -24,6 +25,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   admin: typeof admin;
   auth: typeof auth;
+  errors: typeof errors;
   http: typeof http;
   "lib/neynar": typeof lib_neynar;
   "tables/users": typeof tables_users;
