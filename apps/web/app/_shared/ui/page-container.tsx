@@ -56,7 +56,7 @@ export default function PageContainer({
     <ScrollArea className="h-[calc(100svh-3.5rem-1rem)]">
       {/* header height: 3.5rem, inset margin: 1rem  */}
       <div className="flex flex-1 flex-col p-4 md:px-6">
-        <div className="mb-4 flex items-start justify-between">
+        <div className="mb-6 flex items-start justify-between">
           <Heading
             title={pageTitle ?? ""}
             description={pageDescription ?? ""}
