@@ -2,8 +2,8 @@
 
 import type { VariantProps } from "class-variance-authority";
 import { useMemo } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { cva } from "class-variance-authority";
+import { AnimatePresence, motion } from "motion/react";
 
 import { Label } from "@buildea/ui/components/label";
 import { Separator } from "@buildea/ui/components/separator";
