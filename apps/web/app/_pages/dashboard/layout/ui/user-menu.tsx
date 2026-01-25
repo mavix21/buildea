@@ -71,7 +71,7 @@ export async function UserMenu({ currentUserPromise }: UserMenuProps) {
             <DropdownMenuSeparator />
 
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link href="#" className="flex w-full">
                   <IconUserCircle className="mr-2 h-4 w-4" />
                   Profile
