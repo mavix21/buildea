@@ -10,7 +10,7 @@ import appEs from "./messages/es.json";
 //   es: commonEs,
 // };
 
-export default getRequestConfig(async ({ requestLocale: _ }) => {
+export default getRequestConfig(() => {
   // Typically corresponds to the `[locale]` segment
   // const requested = await requestLocale;
   // const locale = hasLocale(routing.locales, requested)
