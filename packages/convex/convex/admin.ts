@@ -58,6 +58,41 @@ export const getFullOrganization = query({
 });
 
 /**
+ * List organization members (admin only)
+ * Returns members with user details for a given organization
+ */
+export const listOrganizationMembers = query({
+  args: {
+    organizationId: v.string(),
+    limit: v.optional(v.number()),
+    offset: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const { auth, headers } = await authComponent.getAuth(createAuth, ctx);
+
+    // Verify user is admin
+    const session = await auth.api.getSession({ headers });
+    if (!session?.user) {
+      return throwUnauthenticated();
+    }
+    if (session.user.role !== "admin") {
+      return throwForbidden("Admin access required");
+    }
+
+    const result = await auth.api.listMembers({
+      headers,
+      query: {
+        organizationId: args.organizationId,
+        limit: args.limit,
+        offset: args.offset,
+      },
+    });
+
+    return result;
+  },
+});
+
+/**
  * Check if current user is admin
  */
 export const isAdmin = query({
