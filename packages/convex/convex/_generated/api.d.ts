@@ -13,6 +13,7 @@ import type * as auth from "../auth.js";
 import type * as errors from "../errors.js";
 import type * as http from "../http.js";
 import type * as lib_neynar from "../lib/neynar.js";
+import type * as tables_communities from "../tables/communities.js";
 import type * as tables_users from "../tables/users.js";
 import type * as users from "../users.js";
 
@@ -28,6 +29,7 @@ declare const fullApi: ApiFromModules<{
   errors: typeof errors;
   http: typeof http;
   "lib/neynar": typeof lib_neynar;
+  "tables/communities": typeof tables_communities;
   "tables/users": typeof tables_users;
   users: typeof users;
 }>;

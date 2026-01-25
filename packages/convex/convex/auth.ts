@@ -79,6 +79,24 @@ export const authComponent = createClient<DataModel, typeof authSchema>(
           }
         },
       },
+      organization: {
+        onCreate: async (ctx, organization) => {
+          await ctx.db.insert("communities", {
+            orgId: organization._id,
+            socials: {},
+          });
+        },
+        onDelete: async (ctx, organization) => {
+          const community = await ctx.db
+            .query("communities")
+            .withIndex("by_orgId", (q) => q.eq("orgId", organization._id))
+            .first();
+
+          if (community) {
+            ctx.db.delete(community._id);
+          }
+        },
+      },
     },
   },
 );
