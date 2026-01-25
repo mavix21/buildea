@@ -2,6 +2,7 @@
 
 import type { VariantProps } from "class-variance-authority";
 import { useMemo } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { cva } from "class-variance-authority";
 
 import { Label } from "@buildea/ui/components/label";
@@ -193,8 +194,9 @@ function FieldError({
   className,
   children,
   errors,
-  ...props
-}: React.ComponentProps<"div"> & {
+}: {
+  className?: string;
+  children?: React.ReactNode;
   errors?: ({ message?: string } | undefined)[];
 }) {
   const content = useMemo(() => {
@@ -224,19 +226,25 @@ function FieldError({
     );
   }, [children, errors]);
 
-  if (!content) {
-    return null;
-  }
-
   return (
-    <div
-      role="alert"
-      data-slot="field-error"
-      className={cn("text-destructive text-sm font-normal", className)}
-      {...props}
-    >
-      {content}
-    </div>
+    <AnimatePresence mode="wait">
+      {content && (
+        <motion.div
+          key="field-error"
+          role="alert"
+          aria-live="polite"
+          data-slot="field-error"
+          initial={{ opacity: 0, y: -4, scaleY: 0.8 }}
+          animate={{ opacity: 1, y: 0, scaleY: 1 }}
+          exit={{ opacity: 0, y: -4, scaleY: 0.8 }}
+          transition={{ duration: 0.15, ease: "easeOut" }}
+          style={{ originY: 0 }}
+          className={cn("text-destructive text-sm font-normal", className)}
+        >
+          {content}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
