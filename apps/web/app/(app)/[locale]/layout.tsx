@@ -4,6 +4,7 @@ import {
   Geist_Mono,
   Press_Start_2P,
 } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 
 import "@coinbase/onchainkit/styles.css";
 import "@buildea/ui/globals.css";
@@ -53,6 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/[locale]">) {
       <body
         className={`${fontSans.variable} ${fontMono.variable} ${fontHeading.variable} ${fontPixel.variable} font-sans antialiased`}
       >
+        <NextTopLoader color="var(--primary)" showSpinner={false} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

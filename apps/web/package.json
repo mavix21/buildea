@@ -39,6 +39,7 @@
     "next": "16.1.4",
     "next-intl": "^4.7.0",
     "next-themes": "catalog:",
+    "nextjs-toploader": "^3.9.17",
     "react": "catalog:react19",
     "react-dom": "catalog:react19",
     "sonner": "^2.0.7",
