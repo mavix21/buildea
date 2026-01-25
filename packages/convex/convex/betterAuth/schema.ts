@@ -9,5 +9,9 @@ const schema = defineSchema({
     "address",
     "chainId",
   ]),
+  member: tables.member.index("organizationId_userId", [
+    "organizationId",
+    "userId",
+  ]),
 });
 export default schema;
