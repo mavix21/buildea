@@ -28,6 +28,7 @@
     "@t3-oss/env-nextjs": "^0.13.10",
     "@tabler/icons-react": "^3.36.1",
     "@tailwindcss/postcss": "catalog:",
+    "@tanstack/react-form": "^1.27.7",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-table": "^8.21.3",
     "better-auth": "catalog:",
