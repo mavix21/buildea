@@ -2,6 +2,7 @@ import { v } from "convex/values";
 
 import { components } from "../_generated/api";
 import { query } from "../_generated/server";
+import { Doc } from "../betterAuth/_generated/dataModel";
 
 /**
  * Get builder profile by identifier (username or authId)
@@ -43,8 +44,11 @@ export const getBuilderProfileByIdentifier = query({
   handler: async (ctx, args) => {
     const { identifier } = args;
 
+    const identity = await ctx.auth.getUserIdentity();
+
+    let authUser: Doc<"user"> | null = null;
     // First, try to find auth user by username
-    let authUser = await ctx.runQuery(components.betterAuth.adapter.findOne, {
+    authUser = await ctx.runQuery(components.betterAuth.adapter.findOne, {
       model: "user",
       where: [{ field: "username", operator: "eq", value: identifier }],
     });
