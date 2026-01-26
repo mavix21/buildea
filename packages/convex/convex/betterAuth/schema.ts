@@ -13,6 +13,6 @@ const schema = defineSchema({
     "organizationId",
     "userId",
   ]),
-  user: tables.user.index("username", ["username"]),
+  user: tables.user.index("by_username", ["username"]),
 });
 export default schema;
