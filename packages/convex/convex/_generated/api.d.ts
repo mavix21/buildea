@@ -85,6 +85,7 @@ export declare const components: {
                   role?: null | string;
                   updatedAt: number;
                   userId?: null | string;
+                  username?: null | string;
                 };
                 model: "user";
               }
@@ -229,6 +230,7 @@ export declare const components: {
                     | "banReason"
                     | "banExpires"
                     | "githubUrl"
+                    | "username"
                     | "_id";
                   operator?:
                     | "lt"
@@ -619,6 +621,7 @@ export declare const components: {
                     | "banReason"
                     | "banExpires"
                     | "githubUrl"
+                    | "username"
                     | "_id";
                   operator?:
                     | "lt"
@@ -1097,6 +1100,7 @@ export declare const components: {
                   role?: null | string;
                   updatedAt?: number;
                   userId?: null | string;
+                  username?: null | string;
                 };
                 where?: Array<{
                   connector?: "AND" | "OR";
@@ -1116,6 +1120,7 @@ export declare const components: {
                     | "banReason"
                     | "banExpires"
                     | "githubUrl"
+                    | "username"
                     | "_id";
                   operator?:
                     | "lt"
@@ -1589,6 +1594,7 @@ export declare const components: {
                   role?: null | string;
                   updatedAt?: number;
                   userId?: null | string;
+                  username?: null | string;
                 };
                 where?: Array<{
                   connector?: "AND" | "OR";
@@ -1608,6 +1614,7 @@ export declare const components: {
                     | "banReason"
                     | "banExpires"
                     | "githubUrl"
+                    | "username"
                     | "_id";
                   operator?:
                     | "lt"

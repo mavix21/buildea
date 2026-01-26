@@ -116,6 +116,10 @@ export const betterAuthOptions = <
           type: "string",
           required: false,
         },
+        username: {
+          type: "string",
+          required: false,
+        },
       },
     },
     plugins: [

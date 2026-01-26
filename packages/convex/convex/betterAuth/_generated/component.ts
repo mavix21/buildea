@@ -46,6 +46,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                   role?: null | string;
                   updatedAt: number;
                   userId?: null | string;
+                  username?: null | string;
                 };
                 model: "user";
               }
@@ -191,6 +192,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                     | "banReason"
                     | "banExpires"
                     | "githubUrl"
+                    | "username"
                     | "_id";
                   operator?:
                     | "lt"
@@ -582,6 +584,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                     | "banReason"
                     | "banExpires"
                     | "githubUrl"
+                    | "username"
                     | "_id";
                   operator?:
                     | "lt"
@@ -1063,6 +1066,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                   role?: null | string;
                   updatedAt?: number;
                   userId?: null | string;
+                  username?: null | string;
                 };
                 where?: Array<{
                   connector?: "AND" | "OR";
@@ -1082,6 +1086,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                     | "banReason"
                     | "banExpires"
                     | "githubUrl"
+                    | "username"
                     | "_id";
                   operator?:
                     | "lt"
@@ -1556,6 +1561,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                   role?: null | string;
                   updatedAt?: number;
                   userId?: null | string;
+                  username?: null | string;
                 };
                 where?: Array<{
                   connector?: "AND" | "OR";
@@ -1575,6 +1581,7 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
                     | "banReason"
                     | "banExpires"
                     | "githubUrl"
+                    | "username"
                     | "_id";
                   operator?:
                     | "lt"
