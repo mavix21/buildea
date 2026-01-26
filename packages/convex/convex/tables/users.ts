@@ -4,10 +4,21 @@ import { v } from "convex/values";
 export const usersTable = defineTable({
   // Reference to the betterAuth component user._id
   authId: v.string(),
-  // Sync fields from auth user (optional, add what you need)
-  // email: v.string(),
 
-  // Add any app-specific user fields here
+  // Profile fields
+  bio: v.optional(v.string()),
+  bannerImageId: v.optional(v.id("_storage")),
+  avatarImageId: v.optional(v.id("_storage")),
+  skills: v.optional(v.array(v.string())),
+
+  // Gamification fields
+  xp: v.optional(v.number()),
+  level: v.optional(v.number()),
+  rank: v.optional(v.string()),
+  dayStreak: v.optional(v.number()),
+  joinedAt: v.optional(v.number()),
+
+  // Social links
   socials: v.object({
     twitter: v.optional(v.string()),
     linkedin: v.optional(v.string()),
