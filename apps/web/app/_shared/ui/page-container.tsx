@@ -1,6 +1,7 @@
 import type React from "react";
 
 import { ScrollArea } from "@buildea/ui/components/scroll-area";
+import { cn } from "@buildea/ui/lib/utils";
 
 import { Heading } from "./heading";
 
@@ -21,6 +22,7 @@ function PageSkeleton() {
 
 export default function PageContainer({
   children,
+  className,
   scrollable = true,
   isloading = false,
   access = true,
@@ -30,6 +32,7 @@ export default function PageContainer({
   pageHeaderAction,
 }: {
   children: React.ReactNode;
+  className?: string;
   scrollable?: boolean;
   isloading?: boolean;
   access?: boolean;
@@ -52,26 +55,29 @@ export default function PageContainer({
 
   const content = isloading ? <PageSkeleton /> : children;
 
+  const innerContent = (
+    <div
+      className={cn(
+        "mx-auto flex max-w-5xl flex-1 flex-col p-4 md:px-6",
+        className,
+      )}
+    >
+      {pageTitle && (
+        <div className="mb-6 flex items-start justify-between">
+          <Heading title={pageTitle} description={pageDescription ?? ""} />
+          {pageHeaderAction && <div>{pageHeaderAction}</div>}
+        </div>
+      )}
+      {content}
+    </div>
+  );
+
   return scrollable ? (
     <ScrollArea className="h-[calc(100svh-3.5rem-1rem)]">
       {/* header height: 3.5rem, inset margin: 1rem  */}
-      <div className="flex flex-1 flex-col p-4 md:px-6">
-        {pageTitle && (
-          <div className="mb-6 flex items-start justify-between">
-            <Heading title={pageTitle} description={pageDescription ?? ""} />
-            {pageHeaderAction && <div>{pageHeaderAction}</div>}
-          </div>
-        )}
-        {content}
-      </div>
+      {innerContent}
     </ScrollArea>
   ) : (
-    <div className="flex flex-1 flex-col p-4 md:px-6">
-      <div className="mb-4 flex items-start justify-between">
-        <Heading title={pageTitle ?? ""} description={pageDescription ?? ""} />
-        {pageHeaderAction && <div>{pageHeaderAction}</div>}
-      </div>
-      {content}
-    </div>
+    innerContent
   );
 }
