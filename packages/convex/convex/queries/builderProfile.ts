@@ -13,6 +13,10 @@ export const getBuilderProfileByIdentifier = query({
   handler: async (ctx, args) => {
     const { identifier } = args;
 
+    // Get current authenticated user (if any)
+    const identity = await ctx.auth.getUserIdentity();
+    const currentUserAuthId = identity?.subject ?? null;
+
     let authUser: Doc<"user"> | null = null;
     // First, try to find auth user by username
     authUser = await ctx.runQuery(components.betterAuth.adapter.findOne, {
@@ -79,6 +83,8 @@ export const getBuilderProfileByIdentifier = query({
       followersCount: 0,
       followingCount: 0,
       badgesCount: 0,
+      // Auth comparison
+      isOwnProfile: currentUserAuthId === authUser._id,
     };
   },
 });
