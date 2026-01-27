@@ -81,10 +81,10 @@ export function HeroSection({ className }: { className?: string }) {
       {/* Stats Grid */}
       <div className="mt-24 grid grid-cols-2 gap-x-12 gap-y-8 md:grid-cols-4 md:gap-x-16">
         {[
-          { icon: UsersIcon, value: "5000+", label: t("stats.builders") },
+          { icon: UsersIcon, value: "1000+", label: t("stats.builders") },
           { icon: CalendarIcon, value: "120+", label: t("stats.events") },
-          { icon: TrophyIcon, value: "50+", label: t("stats.hackathons") },
-          { icon: GlobeIcon, value: "18", label: t("stats.countries") },
+          { icon: TrophyIcon, value: "10+", label: t("stats.hackathons") },
+          { icon: GlobeIcon, value: "8", label: t("stats.countries") },
         ].map((stat, i) => (
           <div
             key={i}
