@@ -38,6 +38,11 @@ export const isAuthError = (error: unknown): boolean => {
   if (!(error instanceof ConvexError)) {
     return false;
   }
+
+  if (error.message === "Unauthenticated") {
+    return true;
+  }
+
   return isAuthErrorData(error.data);
 };
 
