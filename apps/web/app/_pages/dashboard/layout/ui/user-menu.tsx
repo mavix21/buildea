@@ -78,7 +78,7 @@ export async function UserMenu({ currentUserPromise }: UserMenuProps) {
                 <Suspense>
                   <Link
                     href={`/dashboard/b/${user.username ?? user.id}`}
-                    className="flex w-full"
+                    className="flex w-full items-center"
                   >
                     <IconUserCircle className="mr-2 h-4 w-4" />
                     Profile
@@ -86,7 +86,7 @@ export async function UserMenu({ currentUserPromise }: UserMenuProps) {
                 </Suspense>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <IconBell className="mr-2 h-4 w-4" />
+                <IconBell className="h-4 w-4" />
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
