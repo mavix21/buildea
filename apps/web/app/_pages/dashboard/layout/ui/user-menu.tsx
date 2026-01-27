@@ -1,9 +1,10 @@
-import Link from "next/link";
+import { Suspense } from "react";
 import {
   IconBell,
   IconChevronsDown,
   IconUserCircle,
 } from "@tabler/icons-react";
+import { preloadedQueryResult } from "convex/nextjs";
 
 import type { api } from "@buildea/convex/_generated/api";
 import {
@@ -22,6 +23,7 @@ import {
 } from "@buildea/ui/components/sidebar";
 
 import type { preloadAuthQuery } from "@/auth/server";
+import { Link } from "@/shared/i18n";
 import { UserAvatarProfile } from "@/widgets/auth";
 
 import SignOutMenuItem from "./sign-out-menu-item";
@@ -35,6 +37,7 @@ interface UserMenuProps {
 // Inner component that uses useRouter
 export async function UserMenu({ currentUserPromise }: UserMenuProps) {
   const preloadedUser = await currentUserPromise;
+  const user = preloadedQueryResult(preloadedUser);
 
   return (
     <SidebarMenu>
@@ -71,11 +74,16 @@ export async function UserMenu({ currentUserPromise }: UserMenuProps) {
             <DropdownMenuSeparator />
 
             <DropdownMenuGroup>
-              <DropdownMenuItem asChild>
-                <Link href="#" className="flex w-full">
-                  <IconUserCircle className="mr-2 h-4 w-4" />
-                  Profile
-                </Link>
+              <DropdownMenuItem>
+                <Suspense>
+                  <Link
+                    href={`/dashboard/b/${user.username ?? user.id}`}
+                    className="flex w-full"
+                  >
+                    <IconUserCircle className="mr-2 h-4 w-4" />
+                    Profile
+                  </Link>
+                </Suspense>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <IconBell className="mr-2 h-4 w-4" />
