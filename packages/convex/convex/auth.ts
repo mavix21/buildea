@@ -153,6 +153,7 @@ export const getCurrentUserClient = query({
       email: user.email,
       image: user.image,
       role: user.role,
+      username: user.username ?? null,
     };
   },
 });
