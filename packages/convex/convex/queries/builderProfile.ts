@@ -10,41 +10,8 @@ import { Doc } from "../betterAuth/_generated/dataModel";
  */
 export const getBuilderProfileByIdentifier = query({
   args: { identifier: v.string() },
-  returns: v.union(
-    v.object({
-      authId: v.string(),
-      name: v.string(),
-      email: v.string(),
-      image: v.union(v.string(), v.null()),
-      username: v.union(v.string(), v.null()),
-      bio: v.union(v.string(), v.null()),
-      bannerUrl: v.union(v.string(), v.null()),
-      avatarUrl: v.union(v.string(), v.null()),
-      skills: v.array(v.string()),
-      xp: v.number(),
-      level: v.number(),
-      rank: v.string(),
-      dayStreak: v.number(),
-      joinedAt: v.number(),
-      socials: v.object({
-        twitter: v.union(v.string(), v.null()),
-        linkedin: v.union(v.string(), v.null()),
-        telegram: v.union(v.string(), v.null()),
-        website: v.union(v.string(), v.null()),
-        github: v.union(v.string(), v.null()),
-        farcaster: v.union(v.string(), v.null()),
-      }),
-      // Placeholder counts for future implementation
-      followersCount: v.number(),
-      followingCount: v.number(),
-      badgesCount: v.number(),
-    }),
-    v.null(),
-  ),
   handler: async (ctx, args) => {
     const { identifier } = args;
-
-    const identity = await ctx.auth.getUserIdentity();
 
     let authUser: Doc<"user"> | null = null;
     // First, try to find auth user by username
@@ -54,11 +21,17 @@ export const getBuilderProfileByIdentifier = query({
     });
 
     // Fallback: try to find by authId (_id)
+    // Wrap in try-catch because invalid ID format throws
     if (!authUser) {
-      authUser = await ctx.runQuery(components.betterAuth.adapter.findOne, {
-        model: "user",
-        where: [{ field: "_id", operator: "eq", value: identifier }],
-      });
+      try {
+        authUser = await ctx.runQuery(components.betterAuth.adapter.findOne, {
+          model: "user",
+          where: [{ field: "_id", operator: "eq", value: identifier }],
+        });
+      } catch {
+        // Invalid ID format - identifier is neither username nor valid ID
+        return null;
+      }
     }
 
     if (!authUser) {
