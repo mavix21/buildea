@@ -74,14 +74,7 @@ export const getBuilderProfileByIdentifier = query({
       rank: appUser?.rank ?? "Bronze",
       dayStreak: appUser?.dayStreak ?? 0,
       joinedAt: appUser?.joinedAt ?? authUser.createdAt,
-      socials: {
-        twitter: appUser?.socials?.twitter ?? null,
-        linkedin: appUser?.socials?.linkedin ?? null,
-        telegram: appUser?.socials?.telegram ?? null,
-        website: appUser?.socials?.website ?? null,
-        github: appUser?.socials?.github ?? null,
-        farcaster: appUser?.socials?.farcaster ?? null,
-      },
+      socials: appUser?.socials ?? {},
       // Placeholder values
       followersCount: 0,
       followingCount: 0,
