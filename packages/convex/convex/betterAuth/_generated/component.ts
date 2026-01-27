@@ -2027,6 +2027,13 @@ export type ComponentApi<Name extends string | undefined = string | undefined> =
       >;
     };
     authUser: {
+      findByUsername: FunctionReference<
+        "query",
+        "internal",
+        { username: string },
+        any,
+        Name
+      >;
       setUserId: FunctionReference<
         "mutation",
         "internal",

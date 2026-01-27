@@ -1,6 +1,6 @@
 import { v } from "convex/values";
 
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 
 export const setUserId = mutation({
   args: {
@@ -11,5 +11,17 @@ export const setUserId = mutation({
     await ctx.db.patch(authId, {
       userId: userId,
     });
+  },
+});
+
+export const findByUsername = query({
+  args: {
+    username: v.string(),
+  },
+  handler: async (ctx, { username }) => {
+    return await ctx.db
+      .query("user")
+      .withIndex("by_username", (q) => q.eq("username", username))
+      .unique();
   },
 });
