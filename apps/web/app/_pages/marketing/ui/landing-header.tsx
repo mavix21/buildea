@@ -43,7 +43,7 @@ export function LandingHeader({ children }: { children?: React.ReactNode }) {
                 className="flex items-center space-x-2"
               >
                 <div className="col-span-1 col-start-1 row-start-1 hidden items-center justify-center gap-2 lg:flex">
-                  <span className="font-semibold">{tCommon("logo")}</span>
+                  <p className="font-heading text-xl tracking-wide">BUILDEA</p>
                 </div>
               </Link>
 
