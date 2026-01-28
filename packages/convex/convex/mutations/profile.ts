@@ -34,6 +34,7 @@ export const getMyProfile = query({
       username: authUser.username ?? null,
       avatarUrl,
       bio: appUser?.bio ?? null,
+      countryCode: appUser?.countryCode ?? null,
       skills: appUser?.skills ?? [],
       socials: appUser?.socials ?? {},
     };
@@ -111,6 +112,7 @@ export const updateAuthProfile = mutation({
 export const updateProfile = mutation({
   args: {
     bio: v.optional(v.string()),
+    countryCode: v.optional(v.string()),
     skills: v.optional(v.array(v.string())),
     socials: v.optional(vv.doc("users").fields.socials),
   },
@@ -131,6 +133,7 @@ export const updateProfile = mutation({
       const newId = await ctx.db.insert("users", {
         authId: identity.subject,
         bio: args.bio,
+        countryCode: args.countryCode,
         skills: args.skills,
         socials: args.socials ?? {},
       });
@@ -140,6 +143,7 @@ export const updateProfile = mutation({
     // Update existing app user
     await ctx.db.patch(appUser._id, {
       bio: args.bio,
+      countryCode: args.countryCode,
       skills: args.skills,
       socials: args.socials,
     });
