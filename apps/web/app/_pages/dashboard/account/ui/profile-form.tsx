@@ -1,8 +1,7 @@
 "use client";
 
 import type { Preloaded } from "convex/react";
-import { revalidateLogic, useForm } from "@tanstack/react-form";
-import { useMutation, usePreloadedQuery, useQuery } from "convex/react";
+import { useConvex, useMutation, usePreloadedQuery } from "convex/react";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -21,8 +20,10 @@ import { LoadingButton } from "@buildea/ui/components/loading-button";
 import { Textarea } from "@buildea/ui/components/textarea";
 
 import { AvatarUpload } from "./avatar-upload";
+import { useAppForm } from "./form-hook";
 import { SkillsCombobox } from "./skills-combobox";
 import { SocialsSection } from "./socials-section";
+import { validateUsernameAsync } from "./username-field";
 
 // Zod validation schema
 const profileFormSchema = z.object({
@@ -48,69 +49,15 @@ interface ProfileFormProps {
   preloadedProfile: Preloaded<typeof api.mutations.profile.getMyProfile>;
 }
 
-// Separate client component for username field that can use hooks
-function UsernameFieldWithValidation({
-  value,
-  name,
-  isTouched,
-  syncErrors,
-  isSubmitting,
-  onBlur,
-  onChange,
-}: {
-  value: string;
-  name: string;
-  isTouched: boolean;
-  syncErrors: ({ message?: string } | undefined)[] | undefined;
-  isSubmitting: boolean;
-  onBlur: () => void;
-  onChange: (value: string) => void;
-}) {
-  // Use Convex query reactively - only check when there's a value
-  const isAvailable = useQuery(
-    api.mutations.profile.checkUsernameAvailable,
-    value ? { username: value } : "skip",
-  );
-
-  // Show availability error only if we got a response and username is taken
-  const availabilityError =
-    isAvailable === false ? "Username already taken" : undefined;
-  // Combine sync errors with availability error
-  const errorMessages =
-    syncErrors ??
-    (availabilityError ? [{ message: availabilityError }] : undefined);
-  const isInvalid = isTouched && errorMessages !== undefined;
-
-  return (
-    <Field data-invalid={isInvalid}>
-      <FieldLabel htmlFor="profile-username">Username</FieldLabel>
-      <Input
-        id="profile-username"
-        name={name}
-        value={value}
-        onBlur={onBlur}
-        onChange={(e) => onChange(e.target.value)}
-        aria-invalid={isInvalid}
-        placeholder="your_username"
-        disabled={isSubmitting}
-      />
-      <FieldDescription>
-        Your unique profile URL: buildea.xyz/dashboard/b/
-        {value || "username"}
-      </FieldDescription>
-      {isInvalid ? <FieldError errors={errorMessages} /> : null}
-    </Field>
-  );
-}
-
 export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
   const profile = usePreloadedQuery(preloadedProfile);
   const updateAuthProfile = useMutation(
     api.mutations.profile.updateAuthProfile,
   );
   const updateProfile = useMutation(api.mutations.profile.updateProfile);
+  const convex = useConvex();
 
-  const form = useForm({
+  const form = useAppForm({
     defaultValues: {
       name: profile.name,
       username: profile.username ?? "",
@@ -119,9 +66,8 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
       skills: profile.skills,
       socials: profile.socials,
     },
-    validationLogic: revalidateLogic({ mode: "change" }),
     validators: {
-      onDynamic: profileFormSchema,
+      onChange: profileFormSchema,
     },
     onSubmit: async ({ value }) => {
       try {
@@ -156,7 +102,6 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
           Update your public profile information
         </p>
       </div>
-
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -167,7 +112,7 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
         {/* Avatar Section */}
         <Card>
           <CardHeader>
-            <h3 className="text-lg font-semibold">Profile Picture</h3>
+            <h3 className="font-pixel text-sm">Profile Picture</h3>
           </CardHeader>
           <CardContent>
             <AvatarUpload
@@ -176,18 +121,17 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
             />
           </CardContent>
         </Card>
-
         {/* Basic Info Section */}
         <Card>
           <CardHeader>
-            <h3 className="text-lg font-semibold">Basic Information</h3>
+            <h3 className="font-pixel text-sm">Basic Information</h3>
           </CardHeader>
           <CardContent>
             <FieldGroup>
               <form.Field
                 name="name"
                 children={(field) => {
-                  const errors = field.state.meta.errorMap.onDynamic;
+                  const errors = field.state.meta.errorMap.onChange;
                   const isInvalid =
                     field.state.meta.isTouched && errors !== undefined;
                   return (
@@ -208,26 +152,20 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
                   );
                 }}
               />
-
-              <form.Field
+              <form.AppField
                 name="username"
-                children={(field) => (
-                  <UsernameFieldWithValidation
-                    value={field.state.value}
-                    name={field.name}
-                    isTouched={field.state.meta.isTouched}
-                    syncErrors={field.state.meta.errorMap.onDynamic}
-                    isSubmitting={form.state.isSubmitting}
-                    onBlur={field.handleBlur}
-                    onChange={field.handleChange}
-                  />
-                )}
-              />
-
+                asyncDebounceMs={500}
+                validators={{
+                  onChangeAsync: async ({ value }) =>
+                    validateUsernameAsync(value, convex),
+                }}
+              >
+                {(field) => <field.UsernameField />}
+              </form.AppField>
               <form.Field
                 name="bio"
                 children={(field) => {
-                  const errors = field.state.meta.errorMap.onDynamic;
+                  const errors = field.state.meta.errorMap.onChange;
                   const isInvalid =
                     field.state.meta.isTouched && errors !== undefined;
                   return (
@@ -255,11 +193,10 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
             </FieldGroup>
           </CardContent>
         </Card>
-
         {/* Location Section */}
         <Card>
           <CardHeader>
-            <h3 className="text-lg font-semibold">Location</h3>
+            <h3 className="font-pixel text-sm">Location</h3>
           </CardHeader>
           <CardContent>
             <form.Field
@@ -281,11 +218,10 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
             />
           </CardContent>
         </Card>
-
         {/* Skills Section */}
         <Card>
           <CardHeader>
-            <h3 className="text-lg font-semibold">Skills</h3>
+            <h3 className="font-pixel text-sm">Skills</h3>
           </CardHeader>
           <CardContent>
             <form.Field
@@ -306,11 +242,10 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
             />
           </CardContent>
         </Card>
-
         {/* Social Links Section */}
         <Card>
           <CardHeader>
-            <h3 className="text-lg font-semibold">Social Links</h3>
+            <h3 className="font-pixel text-sm">Social Links</h3>
           </CardHeader>
           <CardContent>
             <form.Field
@@ -325,7 +260,6 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
             />
           </CardContent>
         </Card>
-
         {/* Submit Button */}
         <div className="flex justify-end">
           <form.Subscribe
