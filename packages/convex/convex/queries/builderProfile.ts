@@ -79,6 +79,7 @@ export const getBuilderProfileByIdentifier = query({
       dayStreak: appUser?.dayStreak ?? 0,
       joinedAt: appUser?.joinedAt ?? authUser.createdAt,
       socials: appUser?.socials ?? {},
+      countryCode: appUser?.countryCode ?? null,
       // Placeholder values
       followersCount: 0,
       followingCount: 0,

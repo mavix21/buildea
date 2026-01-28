@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { IconEdit } from "@tabler/icons-react";
+import { countries } from "country-data-list";
+import { CircleFlag } from "react-circle-flags";
 
 import {
   Avatar,
@@ -22,6 +24,7 @@ interface ProfileHeaderProps {
   joinedAt: number;
   followersCount: number;
   followingCount: number;
+  countryCode: string | null;
   /** Whether the current authenticated user is viewing their own profile */
   isOwnProfile: boolean;
 }
@@ -35,6 +38,7 @@ export function ProfileHeader({
   followersCount,
   followingCount,
   isOwnProfile,
+  countryCode,
 }: ProfileHeaderProps) {
   // const joinDate = new Date(joinedAt);
   // const formattedJoinDate = joinDate.toLocaleDateString("es-ES", {
@@ -77,7 +81,21 @@ export function ProfileHeader({
         {/* Meta info row */}
         <div className="text-muted-foreground mt-3 flex flex-wrap gap-4 text-sm">
           <div className="mb-2 flex-1">
-            <h1 className="text-foreground text-2xl font-bold">{name}</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-foreground text-2xl font-bold">{name}</h1>
+              {countryCode && (
+                <CircleFlag
+                  countryCode={(
+                    (countryCode.length === 3
+                      ? countries.all.find((c) => c.alpha3 === countryCode)
+                          ?.alpha2
+                      : countryCode) ?? ""
+                  ).toLowerCase()}
+                  height="24"
+                  width="24"
+                />
+              )}
+            </div>
             {username && (
               <p className="text-muted-foreground text-sm">@{username}</p>
             )}

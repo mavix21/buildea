@@ -206,7 +206,7 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
                   <FieldLabel htmlFor="profile-country">Country</FieldLabel>
                   <CountryDropdown
                     defaultValue={field.state.value}
-                    onChange={(country) => field.handleChange(country.alpha3)}
+                    onChange={(country) => field.handleChange(country.alpha2)}
                     disabled={form.state.isSubmitting}
                     placeholder="Select your country"
                   />

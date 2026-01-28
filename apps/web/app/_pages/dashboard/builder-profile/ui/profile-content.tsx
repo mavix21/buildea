@@ -55,6 +55,7 @@ function ProfileLayout({ profile }: { profile: ProfileData }) {
           avatarUrl={profile.avatarUrl}
           bannerUrl={profile.bannerUrl}
           socials={profile.socials}
+          countryCode={profile.countryCode}
           joinedAt={profile.joinedAt}
           followersCount={profile.followersCount}
           followingCount={profile.followingCount}
