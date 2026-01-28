@@ -10,6 +10,7 @@ export const usersTable = defineTable({
   bannerImageId: v.optional(v.id("_storage")),
   avatarImageId: v.optional(v.id("_storage")),
   skills: v.optional(v.array(v.string())),
+  countryCode: v.optional(v.string()), // ISO 3166-1 alpha-3 (e.g., "USA", "PER")
 
   // Gamification fields
   xp: v.optional(v.number()),
