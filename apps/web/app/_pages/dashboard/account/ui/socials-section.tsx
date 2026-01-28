@@ -30,7 +30,7 @@ const socialFields = [
   },
   {
     key: "twitter" as const,
-    label: "X (Twitter)",
+    label: "(Twitter)",
     icon: IconBrandX,
     placeholder: "https://x.com/username",
   },
@@ -84,7 +84,7 @@ export function SocialsSection({
         <Field key={key} orientation="horizontal">
           <FieldLabel
             htmlFor={`social-${key}`}
-            className="flex items-center gap-2"
+            className="flex w-40 items-center gap-2"
           >
             <Icon className="size-4" />
             <span>{label}</span>
