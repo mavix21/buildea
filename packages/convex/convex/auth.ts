@@ -151,8 +151,8 @@ export const getCurrentUserClient = query({
       id: user._id,
       name: user.name,
       email: user.email,
-      image: user.image,
-      role: user.role,
+      image: user.image ?? null,
+      role: user.role ?? null,
       username: user.username ?? null,
     };
   },

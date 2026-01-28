@@ -1,10 +1,12 @@
-import { Suspense } from "react";
+"use client";
+
+import { Suspense, use } from "react";
 import {
   IconBell,
   IconChevronsDown,
   IconUserCircle,
 } from "@tabler/icons-react";
-import { preloadedQueryResult } from "convex/nextjs";
+import { usePreloadedQuery } from "convex/react";
 
 import type { api } from "@buildea/convex/_generated/api";
 import {
@@ -35,9 +37,9 @@ interface UserMenuProps {
 }
 
 // Inner component that uses useRouter
-export async function UserMenu({ currentUserPromise }: UserMenuProps) {
-  const preloadedUser = await currentUserPromise;
-  const user = preloadedQueryResult(preloadedUser);
+export function UserMenu({ currentUserPromise }: UserMenuProps) {
+  const preloadedUser = use(currentUserPromise);
+  const user = usePreloadedQuery(preloadedUser);
 
   return (
     <SidebarMenu>
@@ -51,7 +53,7 @@ export async function UserMenu({ currentUserPromise }: UserMenuProps) {
               <UserAvatarProfile
                 className="h-8 w-8 rounded-lg"
                 showInfo
-                preloadedUser={preloadedUser}
+                user={user}
               />
               <IconChevronsDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -67,7 +69,7 @@ export async function UserMenu({ currentUserPromise }: UserMenuProps) {
                 <UserAvatarProfile
                   className="h-8 w-8 rounded-lg"
                   showInfo
-                  preloadedUser={preloadedUser}
+                  user={user}
                 />
               </div>
             </DropdownMenuLabel>
