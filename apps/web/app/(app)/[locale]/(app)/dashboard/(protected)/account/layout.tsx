@@ -9,8 +9,8 @@ export default function AccountLayout({
 }) {
   return (
     <ScrollArea className="h-[calc(100svh-3.5rem-1rem)]">
-      <div className="relative mx-auto grid max-w-5xl grid-cols-1 gap-6 p-4 md:grid-cols-[200px_1fr]">
-        <div className="sticky top-4 self-start">
+      <div className="relative mx-auto grid max-w-5xl grid-cols-1 gap-6 p-4 lg:grid-cols-[auto_1fr]">
+        <div className="lg:sticky lg:top-4 lg:self-start">
           <AccountNav />
         </div>
         <div className="flex-1">{children}</div>
