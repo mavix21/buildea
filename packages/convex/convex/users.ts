@@ -70,9 +70,7 @@ export const getOrCreateUserFromFid = action({
     const newAppUserId = await ctx.runMutation(internal.users.createAppUser, {
       authId: newUser.id,
       socials: {
-        farcaster: farcasterUser.username
-          ? `https://farcaster.xyz/${farcasterUser.username}`
-          : undefined,
+        farcaster: farcasterUser.username ?? undefined,
       },
     });
 
