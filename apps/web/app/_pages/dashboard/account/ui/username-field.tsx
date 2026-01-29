@@ -66,7 +66,7 @@ export function UsernameField() {
         Your unique profile URL: buildea.dev/b/
         {value || "username"}
       </FieldDescription>
-      <div className="min-h-[20px]">
+      <div className="min-h-5">
         {isValidating ? (
           <p className="text-muted-foreground flex items-center gap-2 text-[0.8rem]">
             <Loader2 className="h-3 w-3 animate-spin" />
