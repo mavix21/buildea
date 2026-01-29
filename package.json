@@ -10,6 +10,7 @@
     "db:studio": "turbo -F @buildea/db studio",
     "dev": "turbo watch dev --continue",
     "dev:web": "turbo watch dev -F web...",
+    "dev:landing": "turbo watch dev -F landing...",
     "dev:mini": "turbo watch dev -F mini...",
     "dev:lemon": "turbo watch dev -F lemon...",
     "build:web": "turbo build --filter=web...",

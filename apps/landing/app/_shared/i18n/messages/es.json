@@ -1,0 +1,39 @@
+{
+  "languages": {
+    "en": "Inglés",
+    "es": "Español"
+  },
+  "common": {
+    "logo": "Logo",
+    "open_menu": "Abrir Menú",
+    "close_menu": "Cerrar Menú"
+  },
+  "landing": {
+    "navigation": {
+      "events": "Eventos",
+      "community": "Comunidad",
+      "hackathons": "Hackathones"
+    },
+    "header": {
+      "cta": {
+        "primary": "Comenzar"
+      }
+    },
+    "hero": {
+      "badge": "Empoderando a los Constructores de Latinoamérica",
+      "title": "BUILDEA",
+      "description": "Tu puerta de entrada a <highlight>talleres</highlight>, <highlight>cursos</highlight>, <highlight>hackathones</highlight> y <highlight>eventos para desarrolladores</highlight> en toda Latinoamérica.",
+      "sub_description": "Únete a miles de desarrolladores construyendo el futuro",
+      "cta": {
+        "primary": "Comenzar",
+        "secondary": "Ver Estadísticas"
+      }
+    },
+    "stats": {
+      "builders": "CONSTRUCTORES",
+      "events": "EVENTOS",
+      "hackathons": "HACKATHONES",
+      "countries": "PAÍSES"
+    }
+  }
+}

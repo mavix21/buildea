@@ -1,0 +1,39 @@
+{
+  "languages": {
+    "en": "English",
+    "es": "Spanish"
+  },
+  "common": {
+    "logo": "Logo",
+    "open_menu": "Open Menu",
+    "close_menu": "Close Menu"
+  },
+  "landing": {
+    "navigation": {
+      "events": "Events",
+      "community": "Community",
+      "hackathons": "Hackathons"
+    },
+    "header": {
+      "cta": {
+        "primary": "Get Started"
+      }
+    },
+    "hero": {
+      "badge": "Empowering Latin America Builders",
+      "title": "BUILDEA",
+      "description": "Your gateway to <highlight>workshops</highlight>, <highlight>courses</highlight>, <highlight>hackathons</highlight>, and <highlight>developer events</highlight> across Latin America.",
+      "sub_description": "Join thousands of developers building the future",
+      "cta": {
+        "primary": "Get Started",
+        "secondary": "View Stats"
+      }
+    },
+    "stats": {
+      "builders": "BUILDERS",
+      "events": "EVENTS",
+      "hackathons": "HACKATHONS",
+      "countries": "COUNTRIES"
+    }
+  }
+}
