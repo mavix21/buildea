@@ -16,7 +16,10 @@ import {
   FieldLabel,
 } from "@buildea/ui/components/field";
 import { Input } from "@buildea/ui/components/input";
-import { LoadingButton } from "@buildea/ui/components/loading-button";
+import {
+  LoadingButton,
+  LoadingButtonContent,
+} from "@buildea/ui/components/loading-button";
 import { Textarea } from "@buildea/ui/components/textarea";
 
 import { AvatarUpload } from "./avatar-upload";
@@ -95,7 +98,7 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
   });
 
   return (
-    <main className="flex flex-1 flex-col gap-6 p-4 pt-0">
+    <main className="flex flex-1 flex-col gap-6 pt-0">
       <div className="space-y-1">
         <h1 className="text-2xl font-bold">Edit Profile</h1>
         <p className="text-muted-foreground">
@@ -273,7 +276,9 @@ export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
                 loading={isSubmitting}
                 disabled={!canSubmit}
               >
-                Save Changes
+                <LoadingButtonContent loadingText="Saving...">
+                  Save Changes
+                </LoadingButtonContent>
               </LoadingButton>
             )}
           />

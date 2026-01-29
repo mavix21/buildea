@@ -11,7 +11,7 @@ import {
 import { Button } from "@buildea/ui/components/button";
 
 import type { Socials } from "@/entities/profile/model/socials";
-import { SocialIcons } from "@/entities/profile/model/socials";
+import { socialFields, SocialIcons } from "@/entities/profile/model/socials";
 import { Link } from "@/shared/i18n";
 
 interface ProfileHeaderProps {
@@ -102,8 +102,8 @@ export function ProfileHeader({
           <div className="mt-1.5 flex gap-1">
             {/*<IconCalendar className="h-4 w-4" />
             <span>Se unió en {formattedJoinDate}</span>*/}
-            {Object.entries(socials).map(([social, link]) => {
-              if (!link) {
+            {Object.entries(socials).map(([social, value]) => {
+              if (!value) {
                 return null;
               }
               const socialTyped = social as keyof typeof SocialIcons;
@@ -112,7 +112,7 @@ export function ProfileHeader({
               return (
                 <Button size="icon" variant="ghost" key={social} asChild>
                   <a
-                    href={link}
+                    href={`${socialFields[socialTyped].prefix}${value}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground"
