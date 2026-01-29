@@ -49,15 +49,13 @@ const profileFormSchema = z.object({
 });
 
 interface ProfileFormProps {
-  preloadedProfile: Preloaded<typeof api.mutations.profile.getMyProfile>;
+  preloadedProfile: Preloaded<typeof api.builderProfile.getMyProfile>;
 }
 
 export function ProfileForm({ preloadedProfile }: ProfileFormProps) {
   const profile = usePreloadedQuery(preloadedProfile);
-  const updateAuthProfile = useMutation(
-    api.mutations.profile.updateAuthProfile,
-  );
-  const updateProfile = useMutation(api.mutations.profile.updateProfile);
+  const updateAuthProfile = useMutation(api.builderProfile.updateAuthProfile);
+  const updateProfile = useMutation(api.builderProfile.updateProfile);
   const convex = useConvex();
 
   const form = useAppForm({

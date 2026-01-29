@@ -10,11 +10,10 @@
 
 import type * as admin from "../admin.js";
 import type * as auth from "../auth.js";
+import type * as builderProfile from "../builderProfile.js";
 import type * as errors from "../errors.js";
 import type * as http from "../http.js";
 import type * as lib_neynar from "../lib/neynar.js";
-import type * as mutations_profile from "../mutations/profile.js";
-import type * as queries_builderProfile from "../queries/builderProfile.js";
 import type * as tables_communities from "../tables/communities.js";
 import type * as tables_users from "../tables/users.js";
 import type * as users from "../users.js";
@@ -28,11 +27,10 @@ import type {
 declare const fullApi: ApiFromModules<{
   admin: typeof admin;
   auth: typeof auth;
+  builderProfile: typeof builderProfile;
   errors: typeof errors;
   http: typeof http;
   "lib/neynar": typeof lib_neynar;
-  "mutations/profile": typeof mutations_profile;
-  "queries/builderProfile": typeof queries_builderProfile;
   "tables/communities": typeof tables_communities;
   "tables/users": typeof tables_users;
   users: typeof users;
