@@ -92,7 +92,7 @@ export async function validateUsernameAsync(
 ): Promise<string | undefined> {
   if (!value) return undefined;
   const isAvailable = await convex.query(
-    api.mutations.profile.checkUsernameAvailable,
+    api.builderProfile.checkUsernameAvailable,
     { username: value },
   );
   return isAvailable ? undefined : "Username is already taken";
