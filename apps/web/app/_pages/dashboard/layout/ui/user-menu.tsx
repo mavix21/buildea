@@ -1,12 +1,14 @@
 "use client";
 
-import { Suspense, use } from "react";
+import { use } from "react";
+import Link from "next/link";
 import {
   IconBell,
   IconChevronsDown,
   IconUserCircle,
 } from "@tabler/icons-react";
 import { usePreloadedQuery } from "convex/react";
+import { useLocale } from "next-intl";
 
 import type { api } from "@buildea/convex/_generated/api";
 import {
@@ -25,7 +27,6 @@ import {
 } from "@buildea/ui/components/sidebar";
 
 import type { preloadAuthQuery } from "@/auth/server";
-import { Link } from "@/shared/i18n";
 import { UserAvatarProfile } from "@/widgets/auth";
 
 import SignOutMenuItem from "./sign-out-menu-item";
@@ -40,6 +41,7 @@ interface UserMenuProps {
 export function UserMenu({ currentUserPromise }: UserMenuProps) {
   const preloadedUser = use(currentUserPromise);
   const user = usePreloadedQuery(preloadedUser);
+  const locale = useLocale();
 
   return (
     <SidebarMenu>
@@ -76,16 +78,14 @@ export function UserMenu({ currentUserPromise }: UserMenuProps) {
             <DropdownMenuSeparator />
 
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Suspense>
-                  <Link
-                    href={`/dashboard/b/${user.username ?? user.id}`}
-                    className="flex w-full items-center"
-                  >
-                    <IconUserCircle className="mr-2 h-4 w-4" />
-                    Profile
-                  </Link>
-                </Suspense>
+              <DropdownMenuItem asChild>
+                <Link
+                  href={`/${locale}/dashboard/b/${user.username ?? user.id}`}
+                  className="flex w-full cursor-pointer items-center"
+                >
+                  <IconUserCircle className="h-4 w-4" />
+                  Profile
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <IconBell className="h-4 w-4" />
