@@ -10,10 +10,9 @@ import {
 } from "@buildea/ui/components/avatar";
 import { Button } from "@buildea/ui/components/button";
 
+import type { Socials } from "@/entities/profile/model/socials";
+import { SocialIcons } from "@/entities/profile/model/socials";
 import { Link } from "@/shared/i18n";
-
-import type { Socials } from "../model";
-import { SocialIcons } from "../model";
 
 interface ProfileHeaderProps {
   name: string;
@@ -104,23 +103,25 @@ export function ProfileHeader({
             {/*<IconCalendar className="h-4 w-4" />
             <span>Se unió en {formattedJoinDate}</span>*/}
             {Object.entries(socials).map(([social, link]) => {
-              if (link) {
-                const Icon = SocialIcons[social as keyof typeof SocialIcons];
-                return (
-                  <Button size="icon" variant="ghost" key={social} asChild>
-                    <a
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground"
-                      title={social}
-                    >
-                      <Icon className="size-5" />
-                    </a>
-                  </Button>
-                );
+              if (!link) {
+                return null;
               }
-              return null;
+              const socialTyped = social as keyof typeof SocialIcons;
+
+              const Icon = SocialIcons[socialTyped];
+              return (
+                <Button size="icon" variant="ghost" key={social} asChild>
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-foreground"
+                    title={social}
+                  >
+                    <Icon className="size-5" />
+                  </a>
+                </Button>
+              );
             })}
           </div>
         </div>
