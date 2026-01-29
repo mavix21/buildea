@@ -7,9 +7,10 @@ import { admin, organization } from "better-auth/plugins";
 import { betterAuthOptions } from "@buildea/auth";
 
 import { components, internal } from "./_generated/api";
-import { DataModel } from "./_generated/dataModel";
+import { DataModel, Doc } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 import authConfig from "./auth.config";
+import { Doc as AuthDoc } from "./betterAuth/_generated/dataModel";
 import authSchema from "./betterAuth/generatedSchema";
 
 const siteUrl = process.env.SITE_URL ?? "http://localhost:3000";
@@ -44,8 +45,8 @@ export const authComponent = createClient<DataModel, typeof authSchema>(
         onCreate: async (ctx, account) => {
           // When a GitHub account is linked, auto-fill the github social field
           if (account.providerId === "github") {
-            // Query the auth user to get the githubUrl (set via mapProfileToUser)
-            const authUser = await ctx.runQuery(
+            // Query the auth user to get the githubUsername (set via mapProfileToUser)
+            const authUser: AuthDoc<"user"> | null = await ctx.runQuery(
               components.betterAuth.adapter.findOne,
               {
                 model: "user",
@@ -59,9 +60,9 @@ export const authComponent = createClient<DataModel, typeof authSchema>(
               },
             );
 
-            if (authUser?.githubUrl) {
+            if (authUser?.githubUsername) {
               // Find the app user by authId
-              const appUser = await ctx.db
+              const appUser: Doc<"users"> | null = await ctx.db
                 .query("users")
                 .withIndex("by_authId", (q) => q.eq("authId", account.userId))
                 .unique();
@@ -71,7 +72,7 @@ export const authComponent = createClient<DataModel, typeof authSchema>(
                 await ctx.db.patch(appUser._id, {
                   socials: {
                     ...appUser.socials,
-                    github: authUser.githubUrl,
+                    github: authUser.githubUsername,
                   },
                 });
               }

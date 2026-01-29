@@ -83,7 +83,7 @@ export declare const components: {
                   farcasterDisplayName?: null | string;
                   farcasterFid?: null | number;
                   farcasterUsername?: null | string;
-                  githubUrl?: null | string;
+                  githubUsername?: null | string;
                   image?: null | string;
                   name: string;
                   role?: null | string;
@@ -233,7 +233,7 @@ export declare const components: {
                     | "banned"
                     | "banReason"
                     | "banExpires"
-                    | "githubUrl"
+                    | "githubUsername"
                     | "username"
                     | "_id";
                   operator?:
@@ -624,7 +624,7 @@ export declare const components: {
                     | "banned"
                     | "banReason"
                     | "banExpires"
-                    | "githubUrl"
+                    | "githubUsername"
                     | "username"
                     | "_id";
                   operator?:
@@ -1098,7 +1098,7 @@ export declare const components: {
                   farcasterDisplayName?: null | string;
                   farcasterFid?: null | number;
                   farcasterUsername?: null | string;
-                  githubUrl?: null | string;
+                  githubUsername?: null | string;
                   image?: null | string;
                   name?: string;
                   role?: null | string;
@@ -1123,7 +1123,7 @@ export declare const components: {
                     | "banned"
                     | "banReason"
                     | "banExpires"
-                    | "githubUrl"
+                    | "githubUsername"
                     | "username"
                     | "_id";
                   operator?:
@@ -1592,7 +1592,7 @@ export declare const components: {
                   farcasterDisplayName?: null | string;
                   farcasterFid?: null | number;
                   farcasterUsername?: null | string;
-                  githubUrl?: null | string;
+                  githubUsername?: null | string;
                   image?: null | string;
                   name?: string;
                   role?: null | string;
@@ -1617,7 +1617,7 @@ export declare const components: {
                     | "banned"
                     | "banReason"
                     | "banExpires"
-                    | "githubUrl"
+                    | "githubUsername"
                     | "username"
                     | "_id";
                   operator?:

@@ -100,8 +100,8 @@ export const betterAuthOptions = <
             email: profile.email,
             name: profile.name,
 
-            githubUrl: profile.html_url,
             username: profile.login,
+            githubUsername: profile.login,
           };
         },
       },
@@ -112,7 +112,7 @@ export const betterAuthOptions = <
           type: "string",
           required: false,
         },
-        githubUrl: {
+        githubUsername: {
           type: "string",
           required: false,
         },
