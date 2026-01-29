@@ -63,7 +63,7 @@ export function HeroSection({ className }: { className?: string }) {
           className="group font-pixel border tracking-tighter uppercase"
           asChild
         >
-          <Link href="/dashboard">
+          <Link href="/">
             <PlayIcon className="size-5 fill-current" />
             <span>{t("hero.cta.primary")}</span>
             {/* <ArrowRightIcon className="size-5 transition-transform group-hover:translate-x-1" /> */}

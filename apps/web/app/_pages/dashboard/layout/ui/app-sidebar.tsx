@@ -27,7 +27,7 @@ export default function AppSidebar() {
       <SidebarHeader className="@container">
         <Suspense>
           <Link
-            href="/dashboard"
+            href="/"
             className="dark:text-primary font-heading text-foreground cursor-pointer text-sm tracking-wide @min-[215px]:pl-2 @min-[215px]:text-4xl"
           >
             Buildea

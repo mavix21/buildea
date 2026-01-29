@@ -25,7 +25,7 @@ export function SignInWithGitHub({ className }: SignInWithGitHubProps) {
   // Get the callback URL from query params (set by proxy when redirecting to login)
   // Fall back to localized dashboard with success indicator
   const callbackUrl = React.useMemo(
-    () => searchParams.get("callbackUrl") ?? `/${locale}/dashboard`,
+    () => searchParams.get("callbackUrl") ?? `/${locale}/`,
     [searchParams, locale],
   );
 

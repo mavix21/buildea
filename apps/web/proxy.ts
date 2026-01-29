@@ -21,7 +21,7 @@ const publicPages = ["/", "/login", "/register", "/about"];
 const authPages = ["/login", "/register"];
 
 // Admin routes that require admin role (without locale prefix)
-const adminRoutePrefix = "/dashboard/admin";
+const adminRoutePrefix = "/admin";
 
 // Create a regex that matches public pages with optional locale prefix
 const publicPathnameRegex = RegExp(
@@ -104,7 +104,7 @@ export async function proxy(request: NextRequest) {
 
   // If user is authenticated and trying to access auth pages, redirect to dashboard
   if (isAuthenticated && authPathnameRegex.test(pathname)) {
-    return NextResponse.redirect(new URL(`/${locale}/dashboard`, request.url));
+    return NextResponse.redirect(new URL(`/${locale}/`, request.url));
   }
 
   // If it's a public page, just handle i18n routing
@@ -125,7 +125,7 @@ export async function proxy(request: NextRequest) {
     const isAdmin = await isAdminUser(request);
     if (!isAdmin) {
       // Redirect non-admin users to dashboard with access denied
-      const dashboardUrl = new URL(`/${locale}/dashboard`, request.url);
+      const dashboardUrl = new URL(`/${locale}/`, request.url);
       // dashboardUrl.searchParams.set("error", "access_denied");
       return NextResponse.redirect(dashboardUrl);
     }

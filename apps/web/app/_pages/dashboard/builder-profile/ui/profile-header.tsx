@@ -69,7 +69,7 @@ export function ProfileHeader({
           </Avatar>
           {isOwnProfile && (
             <Button className="mb-1" asChild>
-              <Link href="/dashboard/account/profile">
+              <Link href="/account/profile">
                 <IconEdit className="size-5" />
                 <span>Editar perfil</span>
               </Link>

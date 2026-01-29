@@ -7,10 +7,10 @@ import { Tabs, TabsList, TabsTrigger } from "@buildea/ui/components/tabs";
 import { Link, usePathname } from "@/shared/i18n";
 
 const accountNavItems = [
-  { title: "Profile", href: "/dashboard/account/profile", icon: IconUser },
+  { title: "Profile", href: "/account/profile", icon: IconUser },
   {
     title: "Settings",
-    href: "/dashboard/account/settings",
+    href: "/account/settings",
     icon: IconSettings,
   },
 ];
@@ -19,7 +19,7 @@ export function AccountNav() {
   const pathname = usePathname();
   const currentTab =
     accountNavItems.find((item) => pathname === item.href)?.href ??
-    "/dashboard/account/profile";
+    "/account/profile";
 
   return (
     <Tabs

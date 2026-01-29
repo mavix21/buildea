@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 
 export default async function AccountPage({
   params,
-}: LayoutProps<"/[locale]/dashboard/account">) {
+}: LayoutProps<"/[locale]/account">) {
   const { locale } = await params;
-  redirect(`/${locale}/dashboard/account/profile`);
+  redirect(`/${locale}/account/profile`);
 }

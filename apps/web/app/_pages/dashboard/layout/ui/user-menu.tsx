@@ -80,7 +80,7 @@ export function UserMenu({ currentUserPromise }: UserMenuProps) {
             <DropdownMenuGroup>
               <DropdownMenuItem asChild>
                 <Link
-                  href={`/${locale}/dashboard/b/${user.username ?? user.id}`}
+                  href={`/${locale}/b/${user.username ?? user.id}`}
                   className="flex w-full cursor-pointer items-center"
                 >
                   <IconUserCircle className="h-4 w-4" />

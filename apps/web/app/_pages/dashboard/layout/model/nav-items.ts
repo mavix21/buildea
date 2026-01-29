@@ -35,7 +35,7 @@ import type { NavItem } from "./nav-items.type";
 export const navItems: NavItem[] = [
   {
     title: "Dashboard",
-    url: "/dashboard",
+    url: "/",
     icon: "dashboard",
     isActive: false,
     shortcut: ["d", "d"],
@@ -43,14 +43,14 @@ export const navItems: NavItem[] = [
   },
   {
     title: "Arcade",
-    url: "/dashboard/arcade",
+    url: "/arcade",
     icon: "arcade",
     isActive: false,
     items: [],
   },
   {
     title: "Workshops",
-    url: "/dashboard/workshops",
+    url: "/workshops",
     icon: "pick",
     isActive: false,
     items: [],
@@ -66,7 +66,7 @@ export const navItems: NavItem[] = [
     items: [
       {
         title: "Organizations",
-        url: "/dashboard/admin/organizations",
+        url: "/admin/organizations",
         icon: "teams",
         shortcut: ["a", "o"],
       },
@@ -80,14 +80,14 @@ export const navItems: NavItem[] = [
     items: [
       {
         title: "Profile",
-        url: "/dashboard/profile",
+        url: "/account/profile",
         icon: "profile",
         shortcut: ["m", "m"],
       },
       {
-        title: "Billing",
-        url: "/dashboard/billing",
-        icon: "billing",
+        title: "Settings",
+        url: "/account/settings",
+        icon: "settings",
         shortcut: ["b", "b"],
         // Only show billing if in organization context
         access: { requireOrg: true },

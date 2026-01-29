@@ -41,7 +41,7 @@ export function ArcadeCard({
 
   return (
     <Link
-      href={`/dashboard/arcade/${arcade.id}` as `/${string}`}
+      href={`/arcade/${arcade.id}` as `/${string}`}
       className={cn(
         "group border-border/50 bg-card hover:border-border focus-visible:ring-ring relative flex flex-col overflow-hidden rounded-lg border transition-all hover:shadow-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none",
         className,
