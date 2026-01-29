@@ -36,7 +36,7 @@ async function ProfileLoader({
   const { identifier } = await params;
 
   const preloadedProfile = preloadQuery(
-    api.queries.builderProfile.getBuilderProfileByIdentifier,
+    api.builderProfile.getBuilderProfileByIdentifier,
     { identifier },
   );
 

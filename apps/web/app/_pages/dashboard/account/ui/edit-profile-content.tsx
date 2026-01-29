@@ -6,7 +6,7 @@ import { ProfileForm } from "./profile-form";
 
 export async function EditProfileContent() {
   const preloadedProfile = await preloadAuthQuery(
-    api.mutations.profile.getMyProfile,
+    api.builderProfile.getMyProfile,
   );
 
   return <ProfileForm preloadedProfile={preloadedProfile} />;

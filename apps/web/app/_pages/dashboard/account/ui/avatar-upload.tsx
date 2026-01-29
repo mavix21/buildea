@@ -62,9 +62,9 @@ export function AvatarUpload({ currentAvatarUrl, name }: AvatarUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const generateUploadUrl = useMutation(
-    api.mutations.profile.generateAvatarUploadUrl,
+    api.builderProfile.generateAvatarUploadUrl,
   );
-  const saveAvatar = useMutation(api.mutations.profile.saveAvatar);
+  const saveAvatar = useMutation(api.builderProfile.saveAvatar);
 
   const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

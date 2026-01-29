@@ -18,7 +18,7 @@ type ProfileData = NonNullable<
   Awaited<
     ReturnType<
       typeof usePreloadedQuery<
-        typeof api.queries.builderProfile.getBuilderProfileByIdentifier
+        typeof api.builderProfile.getBuilderProfileByIdentifier
       >
     >
   >
@@ -26,7 +26,7 @@ type ProfileData = NonNullable<
 
 interface ProfileContentProps {
   preloadedProfile: Promise<
-    Preloaded<typeof api.queries.builderProfile.getBuilderProfileByIdentifier>
+    Preloaded<typeof api.builderProfile.getBuilderProfileByIdentifier>
   >;
   notFoundFallback: ReactNode;
 }

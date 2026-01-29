@@ -147,14 +147,28 @@ export const getCurrentUser = query({
 export const getCurrentUserClient = query({
   args: {},
   handler: async (ctx) => {
-    const user = await authComponent.getAuthUser(ctx);
+    const authUser = await authComponent.getAuthUser(ctx);
+
+    const appUser = await ctx.db
+      .query("users")
+      .withIndex("by_authId", (q) => q.eq("authId", authUser._id))
+      .unique();
+
+    let avatarUrl: string | null = null;
+
+    if (appUser?.avatarImageId) {
+      avatarUrl = await ctx.storage.getUrl(appUser.avatarImageId);
+    } else if (authUser.image) {
+      avatarUrl = authUser.image;
+    }
+
     return {
-      id: user._id,
-      name: user.name,
-      email: user.email,
-      image: user.image ?? null,
-      role: user.role ?? null,
-      username: user.username ?? null,
+      id: authUser._id,
+      name: authUser.name,
+      email: authUser.email,
+      image: avatarUrl,
+      role: authUser.role ?? null,
+      username: authUser.username ?? null,
     };
   },
 });
