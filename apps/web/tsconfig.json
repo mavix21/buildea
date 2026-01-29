@@ -7,21 +7,22 @@
       "@/app/*": ["./app/(app)/*"],
       "@/pages/*": ["./app/_pages/*"],
       "@/widgets/*": ["./app/_widgets/*"],
-      "@/shared/*": ["./app/_shared/*"]
+      "@/entities/*": ["./app/_entities/*"],
+      "@/shared/*": ["./app/_shared/*"],
     },
     "plugins": [
       {
-        "name": "next"
-      }
+        "name": "next",
+      },
     ],
-    "lib": ["dom", "dom.iterable", "es2022"]
+    "lib": ["dom", "dom.iterable", "es2022"],
   },
   "include": [
     "next-env.d.ts",
     "next.config.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }
