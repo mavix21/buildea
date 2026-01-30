@@ -8,7 +8,7 @@ interface UseSignOutOptions {
   redirectUrl?: string;
 }
 
-export function useSignOut({ redirectUrl = "/" }: UseSignOutOptions = {}) {
+export function useSignOut({ redirectUrl = "/login" }: UseSignOutOptions = {}) {
   const router = useRouter();
 
   const signOut = () => {

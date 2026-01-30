@@ -7,7 +7,7 @@ interface SignOutButtonProps {
 }
 
 export default function SignOutButton({
-  redirectUrl = "/",
+  redirectUrl = "/login",
 }: SignOutButtonProps) {
   const { signOut } = useSignOut({ redirectUrl });
 
