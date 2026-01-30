@@ -15,7 +15,7 @@ import { locales, routing } from "./app/_shared/i18n";
 const handleI18nRouting = createIntlMiddleware(routing);
 
 // Public pages that don't require authentication (without locale prefix)
-const publicPages = ["/", "/login", "/register", "/about"];
+const publicPages = ["/login", "/register", "/about"];
 
 // Routes that should redirect to dashboard if already authenticated (without locale prefix)
 const authPages = ["/login", "/register"];
