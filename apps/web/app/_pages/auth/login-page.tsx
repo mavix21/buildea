@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@buildea/ui/components/card";
 
-import { DitherBackground } from "../marketing/ui";
+import { DitherBackground } from "./ui/dither-background";
 import { LoginForm } from "./ui/login-form";
 
 export function LoginPage() {
