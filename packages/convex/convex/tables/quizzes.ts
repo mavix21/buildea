@@ -9,7 +9,6 @@ export const quizzesTable = defineTable({
 
   lifes: v.optional(v.number()),
   timeLimitSeconds: v.optional(v.number()),
-  passingScore: v.number(),
   allowedAttempts: v.optional(v.number()),
-  suffleQuestions: v.boolean(),
+  shuffleQuestions: v.boolean(),
 });
