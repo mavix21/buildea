@@ -1,6 +1,8 @@
 import { defineTable } from "convex/server";
 import { v } from "convex/values";
 
+import { userAnswer } from "./utils";
+
 export const quizSubmissionsTable = defineTable({
   userId: v.id("users"),
   quizId: v.id("quizzes"),
@@ -16,7 +18,21 @@ export const quizSubmissionsTable = defineTable({
 
   completedAt: v.optional(v.number()),
   score: v.number(),
-  answers: v.array(v.any()),
+
+  totalTimeSpent: v.number(),
+
+  answers: v.array(
+    v.object({
+      questionId: v.id("quizQuestions"),
+      timeSpentSeconds: v.number(),
+      isCorrect: v.boolean(),
+      pointsAwarded: v.number(),
+
+      userAnswer: userAnswer,
+    }),
+  ),
 })
+  .index("by_user", ["userId"])
+  .index("by_quiz_user", ["quizId", "userId"])
   .index("by_source_workshop", ["source.workshopId", "userId"])
   .index("by_source_arcade", ["source.arcadeId", "userId"]);
