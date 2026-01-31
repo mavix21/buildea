@@ -7,10 +7,9 @@ export const quizzesTable = defineTable({
   coverImage: v.optional(v.id("_storage")),
   creatorId: v.id("users"),
 
-  config: v.object({
-    timeLimitSeconds: v.optional(v.number()),
-    passingScore: v.number(),
-    allowedAttemps: v.optional(v.number()),
-    suffleQuestions: v.boolean(),
-  }),
+  lifes: v.optional(v.number()),
+  timeLimitSeconds: v.optional(v.number()),
+  passingScore: v.number(),
+  allowedAttempts: v.optional(v.number()),
+  suffleQuestions: v.boolean(),
 });
