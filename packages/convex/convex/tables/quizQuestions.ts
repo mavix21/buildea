@@ -18,6 +18,12 @@ export const quizQuestionsTable = defineTable({
       code: v.string(),
     }),
   ),
+  difficulty: v.union(
+    v.literal("easy"),
+    v.literal("intermediate"),
+    v.literal("hard"),
+    v.literal("insane"),
+  ),
   explanation: v.string(),
   order: v.number(),
   points: v.number(),
