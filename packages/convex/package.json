@@ -31,7 +31,8 @@
     "@neynar/nodejs-sdk": "^3.128.0",
     "better-auth": "catalog:",
     "convex": "^1.31.6",
-    "convex-helpers": "^0.1.111"
+    "convex-helpers": "^0.1.111",
+    "nanoid": "^5.1.6"
   },
   "devDependencies": {
     "@better-auth/cli": "catalog:",
