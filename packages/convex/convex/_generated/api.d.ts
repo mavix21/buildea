@@ -21,6 +21,7 @@ import type * as tables_quizQuestions from "../tables/quizQuestions.js";
 import type * as tables_quizSubmissions from "../tables/quizSubmissions.js";
 import type * as tables_quizzes from "../tables/quizzes.js";
 import type * as tables_users from "../tables/users.js";
+import type * as tables_utils from "../tables/utils.js";
 import type * as tables_workshops from "../tables/workshops.js";
 import type * as users from "../users.js";
 
@@ -44,6 +45,7 @@ declare const fullApi: ApiFromModules<{
   "tables/quizSubmissions": typeof tables_quizSubmissions;
   "tables/quizzes": typeof tables_quizzes;
   "tables/users": typeof tables_users;
+  "tables/utils": typeof tables_utils;
   "tables/workshops": typeof tables_workshops;
   users: typeof users;
 }>;
