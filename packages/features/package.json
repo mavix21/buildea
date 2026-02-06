@@ -26,8 +26,10 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
+    "@xstate/react": "^5.0.2",
     "next-themes": "catalog:",
-    "tailwindcss": "catalog:"
+    "tailwindcss": "catalog:",
+    "xstate": "^5.26.0"
   },
   "devDependencies": {
     "@buildea/eslint-config": "workspace:*",
