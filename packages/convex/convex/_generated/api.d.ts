@@ -9,14 +9,18 @@
  */
 
 import type * as admin from "../admin.js";
+import type * as arcades from "../arcades.js";
 import type * as auth from "../auth.js";
 import type * as builderProfile from "../builderProfile.js";
 import type * as errors from "../errors.js";
 import type * as http from "../http.js";
+import type * as init from "../init.js";
 import type * as lib_neynar from "../lib/neynar.js";
+import type * as tables_arcadeLevels from "../tables/arcadeLevels.js";
 import type * as tables_arcades from "../tables/arcades.js";
 import type * as tables_communities from "../tables/communities.js";
 import type * as tables_dailyQuests from "../tables/dailyQuests.js";
+import type * as tables_notifications from "../tables/notifications.js";
 import type * as tables_quizQuestions from "../tables/quizQuestions.js";
 import type * as tables_quizSubmissions from "../tables/quizSubmissions.js";
 import type * as tables_quizzes from "../tables/quizzes.js";
@@ -33,14 +37,18 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   admin: typeof admin;
+  arcades: typeof arcades;
   auth: typeof auth;
   builderProfile: typeof builderProfile;
   errors: typeof errors;
   http: typeof http;
+  init: typeof init;
   "lib/neynar": typeof lib_neynar;
+  "tables/arcadeLevels": typeof tables_arcadeLevels;
   "tables/arcades": typeof tables_arcades;
   "tables/communities": typeof tables_communities;
   "tables/dailyQuests": typeof tables_dailyQuests;
+  "tables/notifications": typeof tables_notifications;
   "tables/quizQuestions": typeof tables_quizQuestions;
   "tables/quizSubmissions": typeof tables_quizSubmissions;
   "tables/quizzes": typeof tables_quizzes;
