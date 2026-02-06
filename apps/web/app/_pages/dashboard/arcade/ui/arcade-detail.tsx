@@ -143,7 +143,7 @@ function LevelCard({
       className={cn(
         "relative flex flex-col items-center gap-4 rounded-xl border p-6 transition-all",
         isActive
-          ? `bg-gradient-to-b ${theme.bgClass} ${theme.borderClass} hover:shadow-lg`
+          ? `bg-linear-to-b ${theme.bgClass} ${theme.borderClass} hover:shadow-lg`
           : "border-zinc-800 bg-zinc-900/50",
         level.isLocked && "opacity-60",
       )}
@@ -173,7 +173,7 @@ function LevelCard({
             <div
               className={cn(
                 "absolute inset-0 opacity-50 blur-md",
-                `bg-gradient-to-b from-[${theme.accent}] to-[${theme.secondary}]`,
+                `bg-linear-to-b from-[${theme.accent}] to-[${theme.secondary}]`,
               )}
               style={{
                 clipPath:
