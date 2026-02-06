@@ -49,6 +49,7 @@
     "tailwindcss": "catalog:",
     "viem": "^2.40.3",
     "wagmi": "^2.19.5",
+    "xstate": "^5.26.0",
     "zod": "catalog:"
   },
   "devDependencies": {
