@@ -1,6 +1,7 @@
 import { typedV } from "convex-helpers/validators";
 import { defineSchema } from "convex/server";
 
+import { arcadeLevels } from "./tables/arcadeLevels";
 import { arcadesTable } from "./tables/arcades";
 import { communitiesTable } from "./tables/communities";
 import { dailyQuestsTable } from "./tables/dailyQuests";
@@ -15,6 +16,7 @@ const schema = defineSchema({
   communities: communitiesTable,
   workshops: workshopsTable,
   arcades: arcadesTable,
+  arcadeLevels: arcadeLevels,
   dailyQuests: dailyQuestsTable,
   quizzes: quizzesTable,
   quizQuestions: quizQuestionsTable,
