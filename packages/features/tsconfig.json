@@ -2,6 +2,7 @@
   "extends": "@buildea/tsconfig/compiled-package.json",
   "compilerOptions": {
     "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "paths": {
       "@/app/*": ["./src/app/*"],
       "@/pages/*": ["./src/pages/*"],
