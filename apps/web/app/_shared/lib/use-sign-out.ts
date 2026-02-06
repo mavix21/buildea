@@ -14,7 +14,6 @@ export function useSignOut({ redirectUrl = "/login" }: UseSignOutOptions = {}) {
   const signOut = () => {
     const signOutPromise = authClient.signOut().then(() => {
       router.push(redirectUrl);
-      authClient.$store.notify("$sessionSignal");
     });
 
     toast.promise(signOutPromise, {
