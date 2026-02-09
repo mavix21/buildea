@@ -75,9 +75,6 @@ export const getBuilderProfileByIdentifier = query({
       bannerUrl,
       avatarUrl,
       skills: appUser?.skills ?? [],
-      xp: appUser?.xp ?? 0,
-      level: appUser?.level ?? 1,
-      rank: appUser?.rank ?? "Bronze",
       dayStreak: appUser?.dayStreak ?? 0,
       joinedAt: appUser?.joinedAt ?? authUser.createdAt,
       socials: appUser?.socials ?? {},
@@ -238,6 +235,7 @@ export const updateProfile = mutation({
         countryCode: args.countryCode,
         skills: args.skills,
         socials: args.socials ?? {},
+        totalXp: 0,
       });
       return { success: true, id: newId };
     }
@@ -294,6 +292,7 @@ export const saveAvatar = mutation({
         authId: identity.subject,
         avatarImageId: args.storageId,
         socials: {},
+        totalXp: 0,
       });
       return { success: true, id: newId };
     }

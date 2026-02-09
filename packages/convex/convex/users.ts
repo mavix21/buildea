@@ -163,6 +163,7 @@ export const createAppUser = internalMutation({
     return await ctx.db.insert("users", {
       authId: args.authId,
       socials: args.socials ?? {},
+      totalXp: 0,
     });
   },
 });

@@ -13,9 +13,7 @@ export const usersTable = defineTable({
   countryCode: v.optional(v.string()), // ISO 3166-1 alpha-3 (e.g., "USA", "PER")
 
   // Gamification fields
-  xp: v.optional(v.number()),
-  level: v.optional(v.number()),
-  rank: v.optional(v.string()),
+  totalXp: v.number(), // Single source of truth, level is computed
   dayStreak: v.optional(v.number()),
   joinedAt: v.optional(v.number()),
 
