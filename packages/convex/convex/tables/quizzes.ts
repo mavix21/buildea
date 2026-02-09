@@ -7,8 +7,11 @@ export const quizzesTable = defineTable({
   coverImage: v.optional(v.id("_storage")),
   creatorId: v.id("users"),
 
-  lifes: v.optional(v.number()),
+  scoringMode: v.union(
+    v.object({ type: v.literal("lives"), lives: v.number() }),
+    v.object({ type: v.literal("passing_score"), passingScore: v.number() }),
+    v.object({ type: v.literal("practice") }),
+  ),
   timeLimitSeconds: v.optional(v.number()),
-  allowedAttempts: v.optional(v.number()),
   shuffleQuestions: v.boolean(),
 });

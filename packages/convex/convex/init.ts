@@ -30,7 +30,7 @@ export const seed = internalMutation({
       title: "Blockchain Fundamentals - Nivel Fácil",
       description: "Conceptos básicos de blockchain para principiantes",
       creatorId,
-      lifes: 3,
+      scoringMode: { type: "lives", lives: 3 },
       shuffleQuestions: true,
     });
 
@@ -39,7 +39,7 @@ export const seed = internalMutation({
       description:
         "Profundiza en los mecanismos de consenso y estructuras de datos",
       creatorId,
-      lifes: 3,
+      scoringMode: { type: "lives", lives: 3 },
       shuffleQuestions: true,
     });
 
@@ -47,7 +47,7 @@ export const seed = internalMutation({
       title: "Blockchain Fundamentals - Nivel Difícil",
       description: "Ataques, seguridad y conceptos avanzados de blockchain",
       creatorId,
-      lifes: 3,
+      scoringMode: { type: "lives", lives: 3 },
       shuffleQuestions: true,
     });
 
@@ -55,7 +55,7 @@ export const seed = internalMutation({
       title: "Blockchain Fundamentals - Nivel Experto",
       description: "Domina los conceptos más avanzados de blockchain",
       creatorId,
-      lifes: 3,
+      scoringMode: { type: "lives", lives: 3 },
       shuffleQuestions: true,
     });
 
@@ -64,7 +64,7 @@ export const seed = internalMutation({
       title: "Ethereum 101 - Nivel Fácil",
       description: "Introducción a Ethereum y sus conceptos básicos",
       creatorId,
-      lifes: 3,
+      scoringMode: { type: "lives", lives: 3 },
       shuffleQuestions: true,
     });
 
@@ -72,7 +72,7 @@ export const seed = internalMutation({
       title: "Ethereum 101 - Nivel Intermedio",
       description: "EVM, direcciones y transacciones en Ethereum",
       creatorId,
-      lifes: 3,
+      scoringMode: { type: "lives", lives: 3 },
       shuffleQuestions: true,
     });
 
@@ -80,7 +80,7 @@ export const seed = internalMutation({
       title: "Ethereum 101 - Nivel Difícil",
       description: "EIPs, estándares de tokens y seguridad de contratos",
       creatorId,
-      lifes: 3,
+      scoringMode: { type: "lives", lives: 3 },
       shuffleQuestions: true,
     });
 
@@ -88,7 +88,7 @@ export const seed = internalMutation({
       title: "Ethereum 101 - Nivel Experto",
       description: "MEV, abstracción de cuentas y conceptos avanzados",
       creatorId,
-      lifes: 3,
+      scoringMode: { type: "lives", lives: 3 },
       shuffleQuestions: true,
     });
 
@@ -98,7 +98,6 @@ export const seed = internalMutation({
       level: 1,
       quizId: blockchainEasyQuizId,
       labelDifficulty: "easy",
-      passingScore: 70,
     });
 
     await ctx.db.insert("arcadeLevels", {
@@ -106,7 +105,6 @@ export const seed = internalMutation({
       level: 2,
       quizId: blockchainMediumQuizId,
       labelDifficulty: "medium",
-      passingScore: 75,
     });
 
     await ctx.db.insert("arcadeLevels", {
@@ -114,7 +112,6 @@ export const seed = internalMutation({
       level: 3,
       quizId: blockchainHardQuizId,
       labelDifficulty: "hard",
-      passingScore: 80,
     });
 
     await ctx.db.insert("arcadeLevels", {
@@ -122,7 +119,6 @@ export const seed = internalMutation({
       level: 4,
       quizId: blockchainInsaneQuizId,
       labelDifficulty: "insane",
-      passingScore: 85,
     });
 
     // ============= ETHEREUM ARCADE LEVELS =============
@@ -131,7 +127,6 @@ export const seed = internalMutation({
       level: 1,
       quizId: ethereumEasyQuizId,
       labelDifficulty: "easy",
-      passingScore: 70,
     });
 
     await ctx.db.insert("arcadeLevels", {
@@ -139,7 +134,6 @@ export const seed = internalMutation({
       level: 2,
       quizId: ethereumMediumQuizId,
       labelDifficulty: "medium",
-      passingScore: 75,
     });
 
     await ctx.db.insert("arcadeLevels", {
@@ -147,7 +141,6 @@ export const seed = internalMutation({
       level: 3,
       quizId: ethereumHardQuizId,
       labelDifficulty: "hard",
-      passingScore: 80,
     });
 
     await ctx.db.insert("arcadeLevels", {
@@ -155,7 +148,6 @@ export const seed = internalMutation({
       level: 4,
       quizId: ethereumInsaneQuizId,
       labelDifficulty: "insane",
-      passingScore: 85,
     });
 
     // ============= BLOCKCHAIN EASY QUESTIONS (5) =============
@@ -166,7 +158,6 @@ export const seed = internalMutation({
         explanation:
           "Una blockchain es un libro de contabilidad distribuido e inmutable que registra transacciones a través de una red de computadoras.",
         order: 1,
-        points: 10,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -184,7 +175,6 @@ export const seed = internalMutation({
         explanation:
           "Cada bloque contiene un hash criptográfico del bloque anterior, creando una cadena.",
         order: 2,
-        points: 10,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -202,7 +192,6 @@ export const seed = internalMutation({
         explanation:
           "Bitcoin, creado por Satoshi Nakamoto en 2008, fue la primera implementación de la tecnología blockchain.",
         order: 3,
-        points: 10,
         typeConfig: {
           type: "true_or_false" as const,
           correctAnswer: true,
@@ -215,7 +204,6 @@ export const seed = internalMutation({
         explanation:
           "Descentralizado significa que ninguna entidad controla la red; está distribuida entre muchos nodos.",
         order: 4,
-        points: 10,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -234,7 +222,6 @@ export const seed = internalMutation({
         explanation:
           "La blockchain es inmutable - una vez que los datos son escritos, no pueden ser alterados sin el consenso de la red.",
         order: 5,
-        points: 10,
         typeConfig: {
           type: "true_or_false" as const,
           correctAnswer: false,
@@ -268,7 +255,6 @@ export const seed = internalMutation({
         explanation:
           "Un mecanismo de consenso es un protocolo que asegura que todos los nodos estén de acuerdo sobre el estado de la blockchain.",
         order: 1,
-        points: 20,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -293,7 +279,6 @@ export const seed = internalMutation({
         explanation:
           "Proof of Work, Proof of Stake y Delegated Proof of Stake son mecanismos de consenso utilizados en blockchains.",
         order: 2,
-        points: 20,
         typeConfig: {
           type: "multiple_choice" as const,
           options: [
@@ -311,7 +296,6 @@ export const seed = internalMutation({
         explanation:
           "Un nonce es un número usado una sola vez en la minería para encontrar un hash de bloque válido que cumpla con el objetivo de dificultad.",
         order: 3,
-        points: 20,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -329,7 +313,6 @@ export const seed = internalMutation({
         explanation:
           "Los árboles de Merkle resumen eficientemente y verifican la integridad de grandes conjuntos de datos en un bloque.",
         order: 4,
-        points: 20,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -350,7 +333,6 @@ export const seed = internalMutation({
         explanation:
           "Las blockchains públicas no requieren permisos, permitiendo a cualquiera unirse, leer y escribir en la red.",
         order: 5,
-        points: 20,
         typeConfig: {
           type: "true_or_false" as const,
           correctAnswer: true,
@@ -388,7 +370,6 @@ export const seed = internalMutation({
         explanation:
           "Un ataque del 51% ocurre cuando una entidad controla más de la mitad del poder de minería de la red, permitiéndole manipular transacciones.",
         order: 1,
-        points: 30,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -410,7 +391,6 @@ export const seed = internalMutation({
         explanation:
           "Las funciones hash deben ser determinísticas, resistentes a colisiones y tener el efecto avalancha para la seguridad de blockchain.",
         order: 2,
-        points: 30,
         typeConfig: {
           type: "multiple_choice" as const,
           options: [
@@ -428,7 +408,6 @@ export const seed = internalMutation({
         explanation:
           "El Problema de los Generales Bizantinos describe el desafío de alcanzar consenso en un sistema distribuido con actores potencialmente defectuosos o maliciosos.",
         order: 3,
-        points: 30,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -452,7 +431,6 @@ export const seed = internalMutation({
         explanation:
           "La finalidad significa que una transacción es irreversible y está permanentemente registrada en la blockchain.",
         order: 4,
-        points: 30,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -474,7 +452,6 @@ export const seed = internalMutation({
         explanation:
           "PoS no requiere cálculos intensivos de minería, haciéndolo significativamente más eficiente energéticamente que PoW.",
         order: 5,
-        points: 30,
         typeConfig: {
           type: "true_or_false" as const,
           correctAnswer: true,
@@ -512,7 +489,6 @@ export const seed = internalMutation({
         explanation:
           "En PoS, los validadores pueden votar en múltiples bifurcaciones de cadena sin costo, potencialmente desestabilizando el consenso.",
         order: 1,
-        points: 50,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -534,7 +510,6 @@ export const seed = internalMutation({
         explanation:
           "Las blockchains pueden ser vulnerables a ataques Sybil, ataques de eclipse y estrategias de minería egoísta.",
         order: 2,
-        points: 50,
         typeConfig: {
           type: "multiple_choice" as const,
           options: [
@@ -552,7 +527,6 @@ export const seed = internalMutation({
         explanation:
           "El sharding divide la blockchain en particiones más pequeñas (shards) que procesan transacciones en paralelo.",
         order: 3,
-        points: 50,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -573,7 +547,6 @@ export const seed = internalMutation({
         explanation:
           "Un ataque de largo alcance implica que un atacante crea una cadena alternativa desde un punto lejano en el pasado usando claves de validador antiguas.",
         order: 4,
-        points: 50,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -598,7 +571,6 @@ export const seed = internalMutation({
         explanation:
           "Las pruebas ZK permiten a una parte demostrar conocimiento de un valor sin revelar el valor en sí.",
         order: 5,
-        points: 50,
         typeConfig: {
           type: "true_or_false" as const,
           correctAnswer: true,
@@ -636,7 +608,6 @@ export const seed = internalMutation({
         explanation:
           "Ethereum es una plataforma descentralizada que permite contratos inteligentes y aplicaciones descentralizadas.",
         order: 1,
-        points: 10,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -654,7 +625,6 @@ export const seed = internalMutation({
         explanation:
           "Ether (ETH) es la criptomoneda nativa de la red Ethereum.",
         order: 2,
-        points: 10,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -672,7 +642,6 @@ export const seed = internalMutation({
         explanation:
           "Los contratos inteligentes son programas auto-ejecutables que corren en Ethereum y son una característica central de la plataforma.",
         order: 3,
-        points: 10,
         typeConfig: {
           type: "true_or_false" as const,
           correctAnswer: true,
@@ -684,7 +653,6 @@ export const seed = internalMutation({
         explanation:
           "Vitalik Buterin propuso Ethereum en 2013 y cofundó el proyecto.",
         order: 4,
-        points: 10,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -702,7 +670,6 @@ export const seed = internalMutation({
         explanation:
           "El gas es la unidad que mide el esfuerzo computacional requerido para ejecutar operaciones en Ethereum.",
         order: 5,
-        points: 10,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -744,7 +711,6 @@ export const seed = internalMutation({
         explanation:
           "La Máquina Virtual de Ethereum (EVM) es el entorno de ejecución para ejecutar contratos inteligentes en Ethereum.",
         order: 1,
-        points: 20,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -763,7 +729,6 @@ export const seed = internalMutation({
         explanation:
           "Solidity y Vyper son los principales lenguajes para escribir contratos inteligentes de Ethereum.",
         order: 2,
-        points: 20,
         typeConfig: {
           type: "multiple_choice" as const,
           options: [
@@ -781,7 +746,6 @@ export const seed = internalMutation({
         explanation:
           "Una dirección de Ethereum es una cadena hexadecimal de 42 caracteres derivada de la clave pública.",
         order: 3,
-        points: 20,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -803,7 +767,6 @@ export const seed = internalMutation({
         explanation:
           "El nonce es un contador que asegura que las transacciones se procesen en orden y previene ataques de repetición.",
         order: 4,
-        points: 20,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -825,7 +788,6 @@ export const seed = internalMutation({
         explanation:
           "The Merge en septiembre de 2022 hizo la transición de Ethereum de PoW a consenso PoS.",
         order: 5,
-        points: 20,
         typeConfig: {
           type: "true_or_false" as const,
           correctAnswer: true,
@@ -862,7 +824,6 @@ export const seed = internalMutation({
         explanation:
           "EIP-1559 introdujo un mecanismo de quema de tarifa base y cambió el mercado de tarifas de Ethereum.",
         order: 1,
-        points: 30,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -884,7 +845,6 @@ export const seed = internalMutation({
         explanation:
           "ERC-20, ERC-721 y ERC-1155 son todos estándares de tokens en Ethereum para diferentes casos de uso.",
         order: 2,
-        points: 30,
         typeConfig: {
           type: "multiple_choice" as const,
           options: [
@@ -902,7 +862,6 @@ export const seed = internalMutation({
         explanation:
           "Un ataque de reentrada explota un contrato llamándolo recursivamente antes de que las actualizaciones de estado se completen.",
         order: 3,
-        points: 30,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -923,7 +882,6 @@ export const seed = internalMutation({
         explanation:
           "delegatecall ejecuta código en el contexto del contrato que llama, usando su almacenamiento.",
         order: 4,
-        points: 30,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -945,7 +903,6 @@ export const seed = internalMutation({
         explanation:
           "Las variables de estado se asignan a slots de almacenamiento comenzando desde el slot 0, en el orden en que se declaran.",
         order: 5,
-        points: 30,
         typeConfig: {
           type: "true_or_false" as const,
           correctAnswer: true,
@@ -983,7 +940,6 @@ export const seed = internalMutation({
         explanation:
           "MEV es el valor máximo que puede extraerse reordenando, insertando o censurando transacciones en un bloque.",
         order: 1,
-        points: 50,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -1005,7 +961,6 @@ export const seed = internalMutation({
         explanation:
           "Ataques sandwich, frontrunning y backrunning son estrategias comunes de extracción de MEV.",
         order: 2,
-        points: 50,
         typeConfig: {
           type: "multiple_choice" as const,
           options: [
@@ -1023,7 +978,6 @@ export const seed = internalMutation({
         explanation:
           "La abstracción de cuentas permite que billeteras de contratos inteligentes inicien transacciones, habilitando características como recuperación social y patrocinio de gas.",
         order: 3,
-        points: 50,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -1044,7 +998,6 @@ export const seed = internalMutation({
         explanation:
           "Proto-danksharding introduce transacciones blob para reducir costos de Layer 2 como un paso hacia el danksharding completo.",
         order: 4,
-        points: 50,
         typeConfig: {
           type: "single_choice" as const,
           options: [
@@ -1063,7 +1016,6 @@ export const seed = internalMutation({
         explanation:
           "La EVM es una máquina basada en pila que procesa instrucciones de bytecode usando una pila LIFO.",
         order: 5,
-        points: 50,
         typeConfig: {
           type: "true_or_false" as const,
           correctAnswer: true,

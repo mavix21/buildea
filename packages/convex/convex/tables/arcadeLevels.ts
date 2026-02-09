@@ -12,8 +12,6 @@ export const arcadeLevels = defineTable({
     v.literal("insane"),
   ),
 
-  passingScore: v.number(),
-
   badgeConfig: v.optional(
     v.object({
       tokenId: v.string(),

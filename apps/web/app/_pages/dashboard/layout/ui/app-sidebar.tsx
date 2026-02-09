@@ -17,7 +17,7 @@ import { Link } from "@/shared/i18n";
 import { UserAvatarProfileSkeleton } from "@/widgets/auth/user-avatar-profile-skeleton";
 
 import SidebarMenuItems from "./sidebar-menu-items";
-import { UserMenu } from "./user-menu";
+import { SidebarUserMenu } from "./user-menu";
 
 export default function AppSidebar() {
   const currentUserPromise = preloadAuthQuery(api.auth.getCurrentUserClient);
@@ -44,7 +44,7 @@ export default function AppSidebar() {
       </SidebarContent>
       <SidebarFooter>
         <Suspense fallback={<UserAvatarProfileSkeleton />}>
-          <UserMenu currentUserPromise={currentUserPromise} />
+          <SidebarUserMenu currentUserPromise={currentUserPromise} />
         </Suspense>
       </SidebarFooter>
       <SidebarRail />

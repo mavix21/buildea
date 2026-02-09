@@ -20,6 +20,7 @@ import type * as tables_arcadeLevels from "../tables/arcadeLevels.js";
 import type * as tables_arcades from "../tables/arcades.js";
 import type * as tables_communities from "../tables/communities.js";
 import type * as tables_dailyQuests from "../tables/dailyQuests.js";
+import type * as tables_levelTitles from "../tables/levelTitles.js";
 import type * as tables_notifications from "../tables/notifications.js";
 import type * as tables_quizQuestions from "../tables/quizQuestions.js";
 import type * as tables_quizSubmissions from "../tables/quizSubmissions.js";
@@ -27,7 +28,11 @@ import type * as tables_quizzes from "../tables/quizzes.js";
 import type * as tables_users from "../tables/users.js";
 import type * as tables_utils from "../tables/utils.js";
 import type * as tables_workshops from "../tables/workshops.js";
+import type * as tables_xpConfig from "../tables/xpConfig.js";
+import type * as tables_xpMultipliers from "../tables/xpMultipliers.js";
+import type * as tables_xpTransactions from "../tables/xpTransactions.js";
 import type * as users from "../users.js";
+import type * as xp from "../xp.js";
 
 import type {
   ApiFromModules,
@@ -48,6 +53,7 @@ declare const fullApi: ApiFromModules<{
   "tables/arcades": typeof tables_arcades;
   "tables/communities": typeof tables_communities;
   "tables/dailyQuests": typeof tables_dailyQuests;
+  "tables/levelTitles": typeof tables_levelTitles;
   "tables/notifications": typeof tables_notifications;
   "tables/quizQuestions": typeof tables_quizQuestions;
   "tables/quizSubmissions": typeof tables_quizSubmissions;
@@ -55,7 +61,11 @@ declare const fullApi: ApiFromModules<{
   "tables/users": typeof tables_users;
   "tables/utils": typeof tables_utils;
   "tables/workshops": typeof tables_workshops;
+  "tables/xpConfig": typeof tables_xpConfig;
+  "tables/xpMultipliers": typeof tables_xpMultipliers;
+  "tables/xpTransactions": typeof tables_xpTransactions;
   users: typeof users;
+  xp: typeof xp;
 }>;
 
 /**

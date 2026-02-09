@@ -26,7 +26,6 @@ export const quizQuestionsTable = defineTable({
   ),
   explanation: v.string(),
   order: v.number(),
-  points: v.number(),
 
   typeConfig: v.union(
     v.object({

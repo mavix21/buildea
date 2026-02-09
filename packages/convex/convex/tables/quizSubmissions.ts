@@ -26,11 +26,13 @@ export const quizSubmissionsTable = defineTable({
       questionId: v.id("quizQuestions"),
       timeSpentSeconds: v.number(),
       isCorrect: v.boolean(),
-      pointsAwarded: v.number(),
+      xpAwarded: v.number(), // 0 if already claimed in previous submission
 
       userAnswer: userAnswer,
     }),
   ),
+
+  totalXpAwarded: v.number(), // Sum of new XP from this submission
 })
   .index("by_user", ["userId"])
   .index("by_quiz_user", ["quizId", "userId"])
