@@ -40,8 +40,8 @@ const fontPixel = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Monorepo Template",
-  description: "Next.js Monorepo Template",
+  title: "Buildea",
+  description: "Empowering Latin America Builders",
 };
 
 export function generateStaticParams() {

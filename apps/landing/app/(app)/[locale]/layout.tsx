@@ -41,7 +41,7 @@ const fontPixel = Press_Start_2P({
 });
 
 export const metadata: Metadata = {
-  title: "Buildea - Latin America Builders",
+  title: "Buildea",
   description: "Empowering Latin America Builders",
 };
 
