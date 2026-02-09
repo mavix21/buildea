@@ -34,6 +34,13 @@
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.708 0 0);
 
+  /* Quiz feedback colors */
+  --quiz-correct: oklch(0.65 0.2 145);
+  --quiz-correct-muted: oklch(0.65 0.15 145 / 20%);
+  --quiz-incorrect: oklch(0.6 0.2 25);
+  --quiz-incorrect-muted: oklch(0.6 0.15 25 / 20%);
+  --quiz-option-selected: oklch(0.9 0.1 90 / 30%);
+
   @variant dark {
     --background: #171512;
     --foreground: oklch(0.985 0 0);
