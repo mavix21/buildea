@@ -1,4 +1,4 @@
-import { assign, setup } from "xstate";
+import { assign, fromCallback, setup } from "xstate";
 
 import type {
   QuizConfig,
@@ -108,6 +108,18 @@ export const quizMachine = setup({
     context: {} as QuizMachineContext,
     events: {} as QuizMachineEvent,
     input: {} as QuizMachineInput,
+  },
+  actors: {
+    timerActor: fromCallback<
+      QuizMachineEvent,
+      { timeRemaining: number | null }
+    >(({ sendBack, input }) => {
+      if (input.timeRemaining === null) return;
+      const interval = setInterval(() => {
+        sendBack({ type: "TICK" });
+      }, 1000);
+      return () => clearInterval(interval);
+    }),
   },
   guards: {
     hasSelection: ({ context }) => context.selectedAnswers.length > 0,
@@ -254,6 +266,10 @@ export const quizMachine = setup({
       },
     },
     answering: {
+      invoke: {
+        src: "timerActor",
+        input: ({ context }) => ({ timeRemaining: context.timeRemaining }),
+      },
       on: {
         SELECT_ANSWER: {
           actions: "selectAnswer",
@@ -266,9 +282,16 @@ export const quizMachine = setup({
           guard: "hasSelection",
           actions: "evaluateAnswer",
         },
-        TICK: {
-          actions: "tick",
-        },
+        TICK: [
+          {
+            target: "completed",
+            guard: ({ context }) =>
+              context.timeRemaining !== null && context.timeRemaining <= 0,
+          },
+          {
+            actions: "tick",
+          },
+        ],
         TIMEOUT: {
           target: "completed",
         },

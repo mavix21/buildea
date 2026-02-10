@@ -1,8 +1,8 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { createContext, useEffect, useMemo } from "react";
-import { useMachine } from "@xstate/react";
+import { createContext, useEffect, useMemo, useRef } from "react";
+import { useMachine, useSelector } from "@xstate/react";
 
 import type {
   QuizActions,
@@ -43,14 +43,22 @@ export function XStateQuizProvider({
   children,
   onComplete,
 }: XStateQuizProviderProps) {
-  const [snapshot, send] = useMachine(quizMachine, {
+  const [snapshot, send, actorRef] = useMachine(quizMachine, {
     input: { config, questions, onComplete },
   });
 
-  // Beforeunload warning
+  // Use selector for reactive status check - avoids stale closures
+  const isActive = useSelector(
+    actorRef,
+    (state) => state.value === "answering" || state.value === "submitted",
+  );
+  const isActiveRef = useRef(isActive);
+  isActiveRef.current = isActive;
+
+  // Beforeunload warning - add listener once, check ref in callback
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (snapshot.value === "answering" || snapshot.value === "submitted") {
+      if (isActiveRef.current) {
         e.preventDefault();
         e.returnValue = "";
       }
@@ -58,27 +66,9 @@ export function XStateQuizProvider({
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  }, [snapshot.value]);
+  }, []);
 
-  // Timer tick
-  useEffect(() => {
-    if (
-      snapshot.context.timeRemaining === null ||
-      snapshot.value !== "answering"
-    ) {
-      return;
-    }
-
-    const interval = setInterval(() => {
-      if (snapshot.context.timeRemaining! <= 0) {
-        send({ type: "TIMEOUT" });
-      } else {
-        send({ type: "TICK" });
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [snapshot.value, snapshot.context.timeRemaining, send]);
+  // Timer is now handled by the machine's invoke callback
 
   // Actions
   const actions: QuizActions = useMemo(
