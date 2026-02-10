@@ -184,11 +184,26 @@ export const getBySlug = query({
         .collect();
 
       for (const level of levels) {
-        const submission = submissions.find(
+        const levelSubmissions = submissions.filter(
           (s) => s.quizId === level.quizId && s.completedAt !== undefined,
         );
-        if (submission) {
-          userScores.set(level.quizId, submission.score);
+        if (levelSubmissions.length > 0) {
+          // Pick the submission with the highest number of correct answers
+          let bestPercentage = 0;
+          for (const submission of levelSubmissions) {
+            const correctCount = submission.answers.filter(
+              (a) => a.isCorrect,
+            ).length;
+            const totalCount = submission.answers.length;
+            const percentage =
+              totalCount > 0
+                ? Math.round((correctCount / totalCount) * 100)
+                : 0;
+            if (percentage > bestPercentage) {
+              bestPercentage = percentage;
+            }
+          }
+          userScores.set(level.quizId, bestPercentage);
           completedLevelNumbers.add(level.level);
         }
       }
