@@ -669,7 +669,9 @@ function QuizPoints({ className }: { className?: string }) {
   const { state } = useQuiz();
   const { currentQuestion, status } = state;
 
-  if (!currentQuestion || status === "gameover") return null;
+  if (!currentQuestion || status === "gameover" || status === "completed") {
+    return null;
+  }
 
   return (
     <div className={cn("text-muted-foreground text-sm", className)}>
