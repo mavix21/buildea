@@ -273,7 +273,7 @@ function LevelCard({
   const content = (
     <div
       className={cn(
-        "relative flex flex-col items-center gap-4 rounded-xl border p-6 transition-all",
+        "relative flex flex-col items-center justify-between gap-4 rounded-xl border p-6 transition-all",
         isActive
           ? `bg-linear-to-b ${theme.bgClass} ${theme.borderClass} hover:shadow-lg`
           : "border-zinc-800 bg-zinc-900/50",
