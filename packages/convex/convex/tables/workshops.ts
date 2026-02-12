@@ -79,6 +79,11 @@ export const workshopsTable = defineTable({
   recentRegistrations: v.array(v.id("users")),
 })
   .index("by_communityId", ["communityId"])
+  .index("by_communityId_and_startDate", ["communityId", "startDate"])
+  .index("by_publicationState_and_startDate", [
+    "publicationState.type",
+    "startDate",
+  ])
   .searchIndex("search_workshops", {
     searchField: "title",
   });
