@@ -10,12 +10,14 @@
 
 import type * as admin from "../admin.js";
 import type * as arcades from "../arcades.js";
+import type * as assignmentSubmissions from "../assignmentSubmissions.js";
 import type * as auth from "../auth.js";
 import type * as builderProfile from "../builderProfile.js";
 import type * as errors from "../errors.js";
 import type * as http from "../http.js";
 import type * as init from "../init.js";
 import type * as lib_neynar from "../lib/neynar.js";
+import type * as lib_workshopAuth from "../lib/workshopAuth.js";
 import type * as tables_arcadeLevels from "../tables/arcadeLevels.js";
 import type * as tables_arcades from "../tables/arcades.js";
 import type * as tables_assignmentSubmissions from "../tables/assignmentSubmissions.js";
@@ -37,6 +39,11 @@ import type * as tables_xpConfig from "../tables/xpConfig.js";
 import type * as tables_xpMultipliers from "../tables/xpMultipliers.js";
 import type * as tables_xpTransactions from "../tables/xpTransactions.js";
 import type * as users from "../users.js";
+import type * as workshopAssignments from "../workshopAssignments.js";
+import type * as workshopAttendance from "../workshopAttendance.js";
+import type * as workshopRegistrations from "../workshopRegistrations.js";
+import type * as workshopResources from "../workshopResources.js";
+import type * as workshops from "../workshops.js";
 import type * as xp from "../xp.js";
 
 import type {
@@ -48,12 +55,14 @@ import type {
 declare const fullApi: ApiFromModules<{
   admin: typeof admin;
   arcades: typeof arcades;
+  assignmentSubmissions: typeof assignmentSubmissions;
   auth: typeof auth;
   builderProfile: typeof builderProfile;
   errors: typeof errors;
   http: typeof http;
   init: typeof init;
   "lib/neynar": typeof lib_neynar;
+  "lib/workshopAuth": typeof lib_workshopAuth;
   "tables/arcadeLevels": typeof tables_arcadeLevels;
   "tables/arcades": typeof tables_arcades;
   "tables/assignmentSubmissions": typeof tables_assignmentSubmissions;
@@ -75,6 +84,11 @@ declare const fullApi: ApiFromModules<{
   "tables/xpMultipliers": typeof tables_xpMultipliers;
   "tables/xpTransactions": typeof tables_xpTransactions;
   users: typeof users;
+  workshopAssignments: typeof workshopAssignments;
+  workshopAttendance: typeof workshopAttendance;
+  workshopRegistrations: typeof workshopRegistrations;
+  workshopResources: typeof workshopResources;
+  workshops: typeof workshops;
   xp: typeof xp;
 }>;
 

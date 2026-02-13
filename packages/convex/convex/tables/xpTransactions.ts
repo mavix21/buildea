@@ -15,9 +15,21 @@ export const xpTransactionsTable = defineTable({
       quizId: v.id("quizzes"),
       submissionId: v.id("quizSubmissions"),
       questionId: v.id("quizQuestions"),
+      workshopId: v.optional(v.id("workshops")),
     }),
     v.object({ type: v.literal("module"), moduleId: v.id("courseModules") }),
     v.object({ type: v.literal("dailyTask"), date: v.string() }),
+    v.object({
+      type: v.literal("workshop_assignment"),
+      workshopId: v.id("workshops"),
+      assignmentId: v.id("workshopAssignments"),
+      submissionId: v.id("assignmentSubmissions"),
+    }),
+    v.object({
+      type: v.literal("workshop_attendance"),
+      workshopId: v.id("workshops"),
+      attendanceId: v.id("workshopAttendance"),
+    }),
     // Future sources can be added here
   ),
 

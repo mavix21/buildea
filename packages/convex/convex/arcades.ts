@@ -3,6 +3,7 @@ import { v } from "convex/values";
 import { Id } from "./_generated/dataModel";
 import { mutation, query } from "./_generated/server";
 import { userAnswer } from "./tables/utils";
+import { awardXp } from "./xp";
 
 // Helper to get userId from session (returns null if not authenticated)
 async function getUserId(ctx: {
@@ -521,7 +522,7 @@ export const submitQuiz = mutation({
     });
 
     // 7. Insert submission
-    await ctx.db.insert("quizSubmissions", {
+    const submissionId = await ctx.db.insert("quizSubmissions", {
       userId,
       quizId: args.quizId,
       source: { type: "arcade" as const, arcadeId: args.arcadeId },
@@ -532,14 +533,22 @@ export const submitQuiz = mutation({
       totalXpAwarded,
     });
 
-    // 8. Update user XP
-    if (totalXpAwarded > 0) {
-      const user = await ctx.db.get(userId);
-      if (user) {
-        await ctx.db.patch(userId, {
-          totalXp: user.totalXp + totalXpAwarded,
-        });
+    // 8. Award XP and record transactions
+    for (const answer of answersWithXp) {
+      if (answer.xpAwarded <= 0) {
+        continue;
       }
+
+      await awardXp(ctx, {
+        userId,
+        amount: answer.xpAwarded,
+        source: {
+          type: "quiz",
+          quizId: args.quizId,
+          submissionId,
+          questionId: answer.questionId,
+        },
+      });
     }
 
     return { success: true, xpAwarded: totalXpAwarded };

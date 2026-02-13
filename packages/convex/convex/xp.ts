@@ -1,4 +1,5 @@
-import { query } from "./_generated/server";
+import { Doc } from "./_generated/dataModel";
+import { MutationCtx, query } from "./_generated/server";
 import { authComponent } from "./auth";
 
 /**
@@ -16,6 +17,43 @@ function computeLevel(totalXp: number, base: number): number {
  */
 function xpForLevel(level: number, base: number): number {
   return base * level * level;
+}
+
+export async function awardXp(
+  ctx: MutationCtx,
+  args: {
+    userId: Doc<"users">["_id"];
+    amount: number;
+    source: Doc<"xpTransactions">["source"];
+    multiplier?: number;
+    createdAt?: number;
+  },
+): Promise<void> {
+  if (args.amount <= 0) {
+    return;
+  }
+
+  const user = await ctx.db.get(args.userId);
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const multiplier = args.multiplier ?? 1;
+  const finalXp = args.amount * multiplier;
+  const createdAt = args.createdAt ?? Date.now();
+
+  await ctx.db.patch(user._id, {
+    totalXp: user.totalXp + finalXp,
+  });
+
+  await ctx.db.insert("xpTransactions", {
+    userId: user._id,
+    xpAmount: args.amount,
+    multiplier,
+    finalXp,
+    source: args.source,
+    createdAt,
+  });
 }
 
 /**
