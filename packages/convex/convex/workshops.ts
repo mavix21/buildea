@@ -11,6 +11,90 @@ import {
 } from "./lib/workshopAuth";
 import { registrationModeValidator } from "./tables/workshops";
 
+const workshopCardValidator = v.object({
+  _id: v.id("workshops"),
+  _creationTime: v.number(),
+  title: v.string(),
+  description: v.string(),
+  startDate: v.number(),
+  endDate: v.number(),
+  communityId: v.id("communities"),
+  creatorId: v.id("users"),
+  tags: v.array(v.string()),
+  registrationCount: v.number(),
+  publicationStateType: v.union(
+    v.literal("draft"),
+    v.literal("scheduled"),
+    v.literal("published"),
+    v.literal("archived"),
+  ),
+  imageUrl: v.union(v.string(), v.null()),
+  location: v.union(
+    v.object({
+      type: v.literal("online"),
+      link: v.string(),
+    }),
+    v.object({
+      type: v.literal("in-person"),
+      address: v.string(),
+      instructions: v.optional(v.string()),
+    }),
+  ),
+  community: v.object({
+    id: v.id("communities"),
+    orgId: v.string(),
+    name: v.union(v.string(), v.null()),
+    slug: v.union(v.string(), v.null()),
+    logoUrl: v.union(v.string(), v.null()),
+  }),
+});
+
+const paginatedWorkshopCardValidator = v.object({
+  page: v.array(workshopCardValidator),
+  isDone: v.boolean(),
+  continueCursor: v.string(),
+});
+
+async function resolveWorkshopCommunity(
+  ctx: QueryCtx,
+  communityId: Id<"communities">,
+): Promise<{
+  id: Id<"communities">;
+  orgId: string;
+  name: string | null;
+  slug: string | null;
+  logoUrl: string | null;
+}> {
+  const community = await ctx.db.get(communityId);
+  if (!community) {
+    throw new Error("Community not found");
+  }
+
+  const organization: BetterAuthDoc<"organization"> | null = await ctx.runQuery(
+    components.betterAuth.adapter.findOne,
+    {
+      model: "organization",
+      where: [{ field: "_id", operator: "eq", value: community.orgId }],
+    },
+  );
+
+  let logoUrl: string | null = null;
+  if (community.logoId) {
+    logoUrl = await ctx.storage.getUrl(community.logoId);
+  }
+  if (!logoUrl) {
+    logoUrl = organization?.logo ?? null;
+  }
+
+  return {
+    id: community._id,
+    orgId: community.orgId,
+    name: organization?.name ?? null,
+    slug: organization?.slug ?? null,
+    logoUrl,
+  };
+}
+
 function assertWorkshopDates(startDate: number, endDate: number): void {
   if (endDate <= startDate) {
     throw new Error("endDate must be greater than startDate");
@@ -346,6 +430,7 @@ export const listByCommunity = query({
     communityId: v.id("communities"),
     paginationOpts: paginationOptsValidator,
   },
+  returns: paginatedWorkshopCardValidator,
   handler: async (ctx, args) => {
     const result = await ctx.db
       .query("workshops")
@@ -356,22 +441,31 @@ export const listByCommunity = query({
       .paginate(args.paginationOpts);
 
     const page = await Promise.all(
-      result.page.map(async (workshop) => ({
-        _id: workshop._id,
-        _creationTime: workshop._creationTime,
-        title: workshop.title,
-        description: workshop.description,
-        startDate: workshop.startDate,
-        endDate: workshop.endDate,
-        communityId: workshop.communityId,
-        creatorId: workshop.creatorId,
-        tags: workshop.tags,
-        registrationCount: workshop.registrationCount,
-        publicationStateType: workshop.publicationState.type,
-        imageUrl: workshop.image
-          ? await ctx.storage.getUrl(workshop.image)
-          : null,
-      })),
+      result.page.map(async (workshop) => {
+        const community = await resolveWorkshopCommunity(
+          ctx,
+          workshop.communityId,
+        );
+
+        return {
+          _id: workshop._id,
+          _creationTime: workshop._creationTime,
+          title: workshop.title,
+          description: workshop.description,
+          startDate: workshop.startDate,
+          endDate: workshop.endDate,
+          communityId: workshop.communityId,
+          creatorId: workshop.creatorId,
+          tags: workshop.tags,
+          registrationCount: workshop.registrationCount,
+          publicationStateType: workshop.publicationState.type,
+          imageUrl: workshop.image
+            ? await ctx.storage.getUrl(workshop.image)
+            : null,
+          location: workshop.location,
+          community,
+        };
+      }),
     );
 
     return {
@@ -387,6 +481,7 @@ export const listUpcoming = query({
     paginationOpts: paginationOptsValidator,
     now: v.optional(v.number()),
   },
+  returns: paginatedWorkshopCardValidator,
   handler: async (ctx, args) => {
     const now = args.now ?? Date.now();
 
@@ -399,22 +494,31 @@ export const listUpcoming = query({
       .paginate(args.paginationOpts);
 
     const page = await Promise.all(
-      result.page.map(async (workshop) => ({
-        _id: workshop._id,
-        _creationTime: workshop._creationTime,
-        title: workshop.title,
-        description: workshop.description,
-        startDate: workshop.startDate,
-        endDate: workshop.endDate,
-        communityId: workshop.communityId,
-        creatorId: workshop.creatorId,
-        tags: workshop.tags,
-        registrationCount: workshop.registrationCount,
-        publicationStateType: workshop.publicationState.type,
-        imageUrl: workshop.image
-          ? await ctx.storage.getUrl(workshop.image)
-          : null,
-      })),
+      result.page.map(async (workshop) => {
+        const community = await resolveWorkshopCommunity(
+          ctx,
+          workshop.communityId,
+        );
+
+        return {
+          _id: workshop._id,
+          _creationTime: workshop._creationTime,
+          title: workshop.title,
+          description: workshop.description,
+          startDate: workshop.startDate,
+          endDate: workshop.endDate,
+          communityId: workshop.communityId,
+          creatorId: workshop.creatorId,
+          tags: workshop.tags,
+          registrationCount: workshop.registrationCount,
+          publicationStateType: workshop.publicationState.type,
+          imageUrl: workshop.image
+            ? await ctx.storage.getUrl(workshop.image)
+            : null,
+          location: workshop.location,
+          community,
+        };
+      }),
     );
 
     return {
@@ -429,35 +533,49 @@ export const search = query({
   args: {
     query: v.string(),
     limit: v.optional(v.number()),
+    now: v.optional(v.number()),
   },
+  returns: v.array(workshopCardValidator),
   handler: async (ctx, args) => {
     const limit = args.limit ?? 20;
+    const now = args.now ?? Date.now();
     const rawResults = await ctx.db
       .query("workshops")
       .withSearchIndex("search_workshops", (q) => q.search("title", args.query))
       .take(limit);
 
     const publishedResults = rawResults.filter(
-      (workshop) => workshop.publicationState.type === "published",
+      (workshop) =>
+        workshop.publicationState.type === "published" &&
+        workshop.startDate > now,
     );
 
     return await Promise.all(
-      publishedResults.map(async (workshop) => ({
-        _id: workshop._id,
-        _creationTime: workshop._creationTime,
-        title: workshop.title,
-        description: workshop.description,
-        startDate: workshop.startDate,
-        endDate: workshop.endDate,
-        communityId: workshop.communityId,
-        creatorId: workshop.creatorId,
-        tags: workshop.tags,
-        registrationCount: workshop.registrationCount,
-        publicationStateType: workshop.publicationState.type,
-        imageUrl: workshop.image
-          ? await ctx.storage.getUrl(workshop.image)
-          : null,
-      })),
+      publishedResults.map(async (workshop) => {
+        const community = await resolveWorkshopCommunity(
+          ctx,
+          workshop.communityId,
+        );
+
+        return {
+          _id: workshop._id,
+          _creationTime: workshop._creationTime,
+          title: workshop.title,
+          description: workshop.description,
+          startDate: workshop.startDate,
+          endDate: workshop.endDate,
+          communityId: workshop.communityId,
+          creatorId: workshop.creatorId,
+          tags: workshop.tags,
+          registrationCount: workshop.registrationCount,
+          publicationStateType: workshop.publicationState.type,
+          imageUrl: workshop.image
+            ? await ctx.storage.getUrl(workshop.image)
+            : null,
+          location: workshop.location,
+          community,
+        };
+      }),
     );
   },
 });

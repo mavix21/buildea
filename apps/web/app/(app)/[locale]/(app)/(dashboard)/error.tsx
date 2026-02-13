@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { IconBug } from "@tabler/icons-react";
+import { useTranslations } from "next-intl";
 
 import { Button } from "@buildea/ui/components/button";
 import {
@@ -20,6 +21,8 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const t = useTranslations("dashboard.error");
+
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -31,15 +34,12 @@ export default function Error({
         <EmptyMedia variant="icon">
           <IconBug />
         </EmptyMedia>
-        <EmptyTitle>Uy, algo salió mal</EmptyTitle>
-        <EmptyDescription>
-          La página no pudo cargarse. Por favor, intenta de nuevo. Si el
-          problema persiste, contacta al soporte.
-        </EmptyDescription>
+        <EmptyTitle>{t("title")}</EmptyTitle>
+        <EmptyDescription>{t("description")}</EmptyDescription>
       </EmptyHeader>
       <EmptyContent>
         <Button variant="outline" onClick={() => reset()}>
-          Intentar de nuevo
+          {t("retry")}
         </Button>
       </EmptyContent>
     </Empty>

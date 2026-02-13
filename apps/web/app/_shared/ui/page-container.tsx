@@ -58,7 +58,7 @@ export default function PageContainer({
   const innerContent = (
     <div
       className={cn(
-        "mx-auto flex max-w-5xl flex-1 flex-col p-4 md:px-6",
+        "mx-auto flex w-full flex-1 flex-col p-4 md:px-6 lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl",
         className,
       )}
     >

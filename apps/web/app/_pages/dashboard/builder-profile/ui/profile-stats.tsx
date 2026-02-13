@@ -16,22 +16,22 @@ interface ProfileStatsProps {
   name: string;
   username: string | null;
   avatarUrl: string | null;
-  level: number;
-  xp: number;
-  rank: string;
   badgesCount: number;
   dayStreak: number;
+  level: number;
+  totalXp: number;
+  rank: string | null;
 }
 
 export function ProfileStats({
   name,
   username,
   avatarUrl,
-  level,
-  xp,
-  rank,
   badgesCount,
   dayStreak,
+  level,
+  totalXp,
+  rank,
 }: ProfileStatsProps) {
   return (
     <Card>
@@ -51,12 +51,12 @@ export function ProfileStats({
         <div className="grid grid-cols-2 gap-4">
           <StatItem
             icon={<IconSparkles className="text-primary size-8" />}
-            value={xp}
+            value={totalXp}
             label="XP Total"
           />
           <StatItem
             icon={<IconTrophy className="size-8 text-amber-600" />}
-            value={rank}
+            value={rank ?? "Sin rango"}
             label="Rango"
           />
           <StatItem

@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { v } from "convex/values";
 
 import { internalMutation } from "./_generated/server";
 
@@ -1049,5 +1050,71 @@ export const seed = internalMutation({
     console.log(
       "Se crearon 2 arcades, 8 quizzes (4 por arcade), 8 arcade levels y 40 preguntas.",
     );
+  },
+});
+
+export const seedFutureWorkshops = internalMutation({
+  args: {},
+  returns: v.null(),
+  handler: async (ctx) => {
+    const creatorId = "j57bwhz8rf6s0x9p56qj8etjxh7ztp7v" as any;
+    const communityId = "jd708znqvk4r7wytp01k82562h7zw1fe" as any;
+
+    const workshops = [
+      {
+        title: "OpenClaw Agents en Base: del hype al MVP funcional",
+        description:
+          "Taller práctico para lanzar agentes onchain con OpenClaw sobre Base y automatizar acciones reales.",
+        startDate: Date.UTC(2026, 2, 13, 18, 0, 0, 0),
+        endDate: Date.UTC(2026, 2, 13, 20, 0, 0, 0),
+        tags: ["Base", "OpenClaw", "Agentes", "Onchain"],
+      },
+      {
+        title: "Despliega tu primera Mini App en Farcaster/Base App",
+        description:
+          "Construye y publica una Mini App lista para usuarios reales en el ecosistema social de Farcaster + Base App.",
+        startDate: Date.UTC(2026, 2, 13, 21, 0, 0, 0),
+        endDate: Date.UTC(2026, 2, 13, 23, 0, 0, 0),
+        tags: ["Farcaster", "Base App", "Mini Apps", "SocialFi"],
+      },
+      {
+        title: "Account Abstraction 2026: paymasters y smart wallets",
+        description:
+          "Implementa UX sin fricción con smart wallets, sesiones y gas patrocinado para onboarding masivo.",
+        startDate: Date.UTC(2026, 2, 16, 19, 0, 0, 0),
+        endDate: Date.UTC(2026, 2, 16, 21, 0, 0, 0),
+        tags: ["Account Abstraction", "ERC-4337", "Smart Wallets"],
+      },
+      {
+        title: "Restaking y AVS: diseña productos sobre la nueva capa de seguridad",
+        description:
+          "Explora casos de uso de restaking y AVS para crear productos web3 con seguridad compartida.",
+        startDate: Date.UTC(2026, 2, 20, 19, 30, 0, 0),
+        endDate: Date.UTC(2026, 2, 20, 21, 30, 0, 0),
+        tags: ["Restaking", "AVS", "Infraestructura", "Ethereum"],
+      },
+    ] as const;
+
+    for (const workshop of workshops) {
+      await ctx.db.insert("workshops", {
+        title: workshop.title,
+        description: workshop.description,
+        startDate: workshop.startDate,
+        endDate: workshop.endDate,
+        creatorId,
+        communityId,
+        location: {
+          type: "online",
+          link: "https://buildea.com/live",
+        },
+        publicationState: { type: "published" },
+        coHosts: [],
+        tags: [...workshop.tags],
+        registrationCount: 0,
+        recentRegistrations: [],
+      });
+    }
+
+    return null;
   },
 });

@@ -61,7 +61,6 @@ export const navItems: NavItem[] = [
     title: "Admin",
     url: "#", // Placeholder as there is no direct link for the parent
     icon: "admin",
-    isActive: true,
     access: { role: "admin" },
     items: [
       {

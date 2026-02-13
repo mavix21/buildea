@@ -73,11 +73,11 @@ function ProfileLayout({ profile }: { profile: ProfileData }) {
           name={profile.name}
           username={profile.username}
           avatarUrl={profile.avatarUrl}
-          level={profile.level}
-          xp={profile.xp}
-          rank={profile.rank}
           badgesCount={profile.badgesCount}
           dayStreak={profile.dayStreak}
+          level={profile.level}
+          totalXp={profile.totalXp}
+          rank={profile.rank}
         />
         <AchievementsCard />
         <SkillsCard skills={profile.skills} />

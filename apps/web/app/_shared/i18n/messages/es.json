@@ -28,6 +28,11 @@
     "title": "Auth Playground",
     "description": "Esta página muestra tus detalles de autenticación y datos de sesión.",
     "to_test_page": "ir a página de prueba",
+    "error": {
+      "title": "Uy, algo salió mal",
+      "description": "La página no pudo cargarse. Por favor, intenta de nuevo. Si el problema persiste, contacta al soporte.",
+      "retry": "Intentar de nuevo"
+    },
     "auth_status": {
       "title": "Estado de Autenticación",
       "description": "Tu estado actual de autenticación",
@@ -128,6 +133,35 @@
     },
     "footer": {
       "copyright": "(TODO) Copyright"
+    }
+  },
+  "workshops": {
+    "header": {
+      "title": "Próximos workshops",
+      "description": "Descubre las próximas sesiones y encuentra el mejor workshop para tu próximo paso de construcción."
+    },
+    "search": {
+      "placeholder": "Buscar próximos workshops...",
+      "aria_label": "Buscar workshops"
+    },
+    "empty": {
+      "title": "No se encontraron workshops",
+      "description": "Prueba ajustando tu búsqueda o vuelve más tarde para nuevas sesiones."
+    },
+    "actions": {
+      "loading": "Cargando...",
+      "load_more": "Cargar más"
+    },
+    "card": {
+      "by_community": "Por {communityName}",
+      "location_fallback": "Detalles de ubicación en la página del taller"
+    },
+    "fallback": {
+      "community_name": "Comunidad"
+    },
+    "relative": {
+      "today": "Hoy",
+      "tomorrow": "Mañana"
     }
   }
 }

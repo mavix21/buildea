@@ -28,6 +28,11 @@
     "title": "Auth Playground",
     "description": "This page displays your authentication details and session data.",
     "to_test_page": "to test page",
+    "error": {
+      "title": "Oops, something went wrong",
+      "description": "The page could not be loaded. Please try again. If the problem persists, contact support.",
+      "retry": "Try again"
+    },
     "auth_status": {
       "title": "Authentication Status",
       "description": "Your current authentication state",
@@ -128,6 +133,35 @@
     },
     "footer": {
       "copyright": "(TODO) Copyright"
+    }
+  },
+  "workshops": {
+    "header": {
+      "title": "Upcoming workshops",
+      "description": "Discover upcoming sessions and find the best workshop for your next build step."
+    },
+    "search": {
+      "placeholder": "Search upcoming workshops...",
+      "aria_label": "Search workshops"
+    },
+    "empty": {
+      "title": "No workshops found",
+      "description": "Try adjusting your search or check back later for new sessions."
+    },
+    "actions": {
+      "loading": "Loading...",
+      "load_more": "Load more"
+    },
+    "card": {
+      "by_community": "By {communityName}",
+      "location_fallback": "Location details on workshop page"
+    },
+    "fallback": {
+      "community_name": "Community"
+    },
+    "relative": {
+      "today": "Today",
+      "tomorrow": "Tomorrow"
     }
   }
 }

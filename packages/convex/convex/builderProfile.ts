@@ -6,6 +6,11 @@ import { authComponent } from "./auth";
 import { Doc } from "./betterAuth/_generated/dataModel";
 import { vv } from "./schema";
 
+function computeLevel(totalXp: number, base: number): number {
+  if (totalXp <= 0 || base <= 0) return 0;
+  return Math.floor(Math.sqrt(totalXp / base));
+}
+
 /**
  * Get builder profile by identifier (username or authId)
  * Public query - no auth required
@@ -65,6 +70,27 @@ export const getBuilderProfileByIdentifier = query({
       avatarUrl = authUser.image;
     }
 
+    const totalXp = appUser?.totalXp ?? 0;
+    const xpConfig = await ctx.db.query("xpConfig").first();
+    const base = xpConfig?.levelFormula.base ?? 100;
+    const level = computeLevel(totalXp, base);
+
+    const levelTitles = await ctx.db
+      .query("levelTitles")
+      .withIndex("by_minLevel")
+      .order("desc")
+      .collect();
+
+    let rank: string | null = null;
+    for (const levelTitle of levelTitles) {
+      if (level >= levelTitle.minLevel) {
+        if (levelTitle.maxLevel === undefined || level <= levelTitle.maxLevel) {
+          rank = levelTitle.title;
+          break;
+        }
+      }
+    }
+
     return {
       authId: authUser._id,
       name: authUser.name,
@@ -83,6 +109,9 @@ export const getBuilderProfileByIdentifier = query({
       followersCount: 0,
       followingCount: 0,
       badgesCount: 0,
+      totalXp,
+      level,
+      rank,
       // Auth comparison
       isOwnProfile: currentUserAuthId === authUser._id,
     };
