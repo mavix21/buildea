@@ -23,7 +23,7 @@ export default function AppSidebar() {
   const currentUserPromise = preloadAuthQuery(api.auth.getCurrentUserClient);
 
   return (
-    <Sidebar variant="inset" collapsible="icon">
+    <Sidebar variant="floating" collapsible="icon">
       <SidebarHeader className="@container">
         <Suspense>
           <Link
