@@ -63,7 +63,7 @@ export default function PageContainer({
       )}
     >
       {pageTitle && (
-        <div className="mb-6 flex items-start justify-between">
+        <div className="mb-5 flex items-start justify-between">
           <Heading title={pageTitle} description={pageDescription ?? ""} />
           {pageHeaderAction && <div>{pageHeaderAction}</div>}
         </div>
