@@ -13,9 +13,11 @@ export default function DashboardLayour({
     <ClientAuthBoundary>
       <SidebarProvider>
         <AppSidebar />
-        <SidebarInset>
+        <SidebarInset className="h-svh overflow-hidden">
           <Header />
-          {children}
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+            {children}
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </ClientAuthBoundary>

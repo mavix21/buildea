@@ -20,7 +20,7 @@ export function WorkshopsPage() {
   return (
     <PageContainer
       scrollable={false}
-      className="space-y-6"
+      className="flex h-full min-h-0 flex-col gap-6 overflow-hidden"
       pageTitle={t("header.title")}
       pageDescription={t("header.description")}
     >

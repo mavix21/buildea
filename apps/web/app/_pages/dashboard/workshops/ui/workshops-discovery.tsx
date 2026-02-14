@@ -76,7 +76,7 @@ export function WorkshopsDiscoveryShell({ children }: { children: ReactNode }) {
 
   return (
     <WorkshopsDiscoveryContext.Provider value={{ debouncedQuery, locale }}>
-      <div className="space-y-4">
+      <div className="flex min-h-0 flex-1 flex-col gap-4">
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -165,8 +165,8 @@ export function WorkshopsDiscovery({
   );
 
   return (
-    <>
-      <ScrollArea className="h-[70svh] rounded-xl border p-4">
+    <div className="flex min-h-0 flex-1 flex-col gap-4">
+      <ScrollArea className="min-h-0 flex-1">
         {groupedWorkshops.length === 0 ? (
           <Empty className="py-10">
             <EmptyHeader>
@@ -182,9 +182,7 @@ export function WorkshopsDiscovery({
             {groupedWorkshops.map((group) => (
               <WorkshopsTimeline.Group key={group.dateKey}>
                 <WorkshopsTimeline.StickyDate>
-                  <span className="font-semibold">
-                    {group.label.date}
-                  </span>
+                  <span className="font-semibold">{group.label.date}</span>
                   <span className="text-muted-foreground font-normal">
                     {group.label.weekday}
                   </span>
@@ -219,7 +217,7 @@ export function WorkshopsDiscovery({
           </Button>
         </div>
       ) : null}
-    </>
+    </div>
   );
 }
 
@@ -228,6 +226,7 @@ function WorkshopTimelineCard({ workshop }: { workshop: WorkshopItem }) {
   const locale = useLocale();
   const startTime = formatTimeByLocale(workshop.startDate, locale);
   const communityName = workshop.community.name ?? t("fallback.community_name");
+  const communityLogoUrl = workshop.community.logoUrl;
 
   return (
     <WorkshopsTimeline.Item>
@@ -243,7 +242,19 @@ function WorkshopTimelineCard({ workshop }: { workshop: WorkshopItem }) {
                   {workshop.title}
                 </WorkshopsTimeline.ItemTitle>
                 <div className="text-muted-foreground flex items-center gap-2 text-sm">
-                  <CalendarDays className="size-4" />
+                  {communityLogoUrl ? (
+                    <span className="relative size-4 shrink-0 overflow-hidden rounded-full">
+                      <Image
+                        src={communityLogoUrl}
+                        alt={communityName}
+                        fill
+                        sizes="16px"
+                        className="object-cover"
+                      />
+                    </span>
+                  ) : (
+                    <span className="bg-muted inline-block size-4 shrink-0 rounded-full" />
+                  )}
                   <span>{t("card.by_community", { communityName })}</span>
                 </div>
                 <div className="text-muted-foreground flex items-center gap-2 text-sm">
